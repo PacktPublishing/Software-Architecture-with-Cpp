@@ -1,0 +1,29 @@
+<definitions name="demo" targetNamespace="http://www.example.com/wsdl/MyService.wsdl"
+             xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:tns="http://www.example.com/wsdl/MyService.wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <message name="fooRequest">
+        <part name="arg1" type="xsd:int"/>
+        <part name="arg2" type="xsd:int"/>
+    </message>
+    <message name="fooResponse">
+        <part name="return" type="xs:string"/>
+    </message>
+    <portType name="FooPortType">
+        <operation name="foo">
+            <input name="fooRequest" message="tns:fooRequest"/>
+            <output name="fooResponse" message="tns:fooResponse"/>
+        </operation>
+    </portType>
+    <binding name="FooBinding" type="tns:FooPortType">
+        <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="foo">
+            <input name="fooRequest" />
+            <output name="fooResponse" />
+        </operation>
+    </binding>
+    <service name="http://server/MyApi">
+        <port name="FooPort" binding="tns:FooBinding">
+            <soap:address location="http://server/MyApi"/>
+        </port>
+    </service>
+</definitions>

@@ -1,0 +1,11 @@
+service Greeter {
+ rpc Greet(GreetRequest) returns (GreetResponse);
+}
+
+message GreetRequest {
+ string name = 1;
+}
+
+message GreetResponse {
+ string reply = 1;
+}
