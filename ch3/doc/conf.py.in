@@ -1,0 +1,11 @@
+extensions = [ "breathe", "m2r" ]
+breathe_projects = { "BreatheDemo": "@CMAKE_CURRENT_BINARY_DIR@/xml" }
+breathe_default_project = "BreatheDemo"
+
+project = "Breathe Demo"
+author = "Breathe Demo Authors"
+copyright = "2019, Breathe Demo Authors"
+version = "@PROJECT_VERSION@"
+release = "@PROJECT_VERSION@"
+
+html_theme = 'sphinx_rtd_theme'
