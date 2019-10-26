@@ -31,25 +31,27 @@ install(TARGETS libcustomer customer
 install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ # last slash is important here
         DESTINATION include)
 
-install(EXPORT CustomerTargets
-        FILE CustomerTargets.cmake
-        NAMESPACE domifair::
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Customer)
+if (NOT CONAN_EXPORTED)
+    install(EXPORT CustomerTargets
+            FILE CustomerTargets.cmake
+            NAMESPACE domifair::
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Customer)
 
-configure_file(${CMAKE_SOURCE_DIR}/cmake/CustomerConfig.cmake.in CustomerConfig.cmake @ONLY)
+    configure_file(${CMAKE_SOURCE_DIR}/cmake/CustomerConfig.cmake.in CustomerConfig.cmake @ONLY)
 
-include(CMakePackageConfigHelpers)
-write_basic_package_version_file(
-        CustomerConfigVersion.cmake
-        VERSION ${PACKAGE_VERSION}
-        COMPATIBILITY AnyNewerVersion)
+    include(CMakePackageConfigHelpers)
+    write_basic_package_version_file(
+            CustomerConfigVersion.cmake
+            VERSION ${PACKAGE_VERSION}
+            COMPATIBILITY AnyNewerVersion)
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/CustomerConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/CustomerConfigVersion.cmake
-        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Customer)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/CustomerConfig.cmake ${CMAKE_CURRENT_BINARY_DIR}/CustomerConfigVersion.cmake
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Customer)
+endif ()
+
+install(FILES ${CMAKE_SOURCE_DIR}/LICENSE DESTINATION $<IF:$<BOOL:${CONAN_EXPORTED}>,licenses,${CMAKE_INSTALL_DOCDIR}>)
 
 # Exporting
-
-# TODO: is it needed at all?
 
 export(TARGETS libcustomer customer NAMESPACE domifair:: FILE CustomerTargets.cmake)
 
@@ -64,8 +66,8 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Library and app for the Customer microser
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-# set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
-# set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")  # used by installers like NSIS
+set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
 
 list(APPEND CPACK_GENERATOR TGZ ZIP)
 if (UNIX)
@@ -74,6 +76,7 @@ if (UNIX)
         message(STATUS "rpmbuild not found - won't be able to create RPM packages")
     else ()
         list(APPEND CPACK_GENERATOR RPM)
+        # TODO: dependencies etc.
     endif ()
 
     # TODO: proper DEB building possibility detection
@@ -81,8 +84,9 @@ if (UNIX)
     # if (NOT ${DPKG_PROGRAM})
     #     message(STATUS "dpkg not found - won't be able to create DEB packages")
     # else ()
-        set (CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-        list(APPEND CPACK_GENERATOR DEB)
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "${CPACK_DEBIAN_PACKAGE_DEPENDS} libcpprest2.10 (>= 2.10.10-1)")
+    list(APPEND CPACK_GENERATOR DEB)
     # endif ()
 endif ()
 
@@ -94,3 +98,13 @@ set(CPACK_SOURCE_IGNORE_FILES
         )
 
 include(CPack)
+
+# Conan support
+
+configure_file(${CMAKE_SOURCE_DIR}/conan/conanfile.py.in ${CMAKE_CURRENT_BINARY_DIR}/conan/conanfile.py @ONLY)
+
+add_custom_target(conan
+        COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/conan/test_package/ ${CMAKE_CURRENT_BINARY_DIR}/conan/test_package
+        COMMAND conan create . customer/testing
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
+        VERBATIM)

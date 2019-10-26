@@ -1,0 +1,49 @@
+import os
+from conans import ConanFile, CMake
+
+
+class CustomerConan(ConanFile):
+    name = "customer"
+    version = "0.0.1"
+    license = "MIT"
+    author = "Authors"
+    homepage = "https://example.com"
+    url = "https://github.com/conan-io/conan-center-index"  # ideally
+    description = "Library and app for the Customer microservice"
+    topics = ("Customer", "domifair")
+    settings = "os", "compiler", "build_type", "arch"
+    options = {"shared": [True, False], "fPIC": [True, False]}
+    default_options = {"shared": False, "fPIC": True}
+    generators = "cmake"
+    keep_imports = True  # useful for repackaging, e.g. of licenses
+
+    def package_info(self):
+        self.cpp_info.libs = ["customer"]
+
+    def requirements(self):
+        self.requires.add('cpprestsdk/2.10.14@bincrafters/stable')
+
+    def _configure_cmake(self):
+        cmake = CMake(self)
+        cmake.configure(source_folder="@CMAKE_SOURCE_DIR@")
+        return cmake
+
+    def imports(self):
+        self.copy("license*", dst="licenses", folder=True, ignore_case=True)
+
+        # Use the following for the cmake_multi generator on Windows and/or Mac OS to copy libs to the right directory.
+        # Invoke Conan like so:
+        #   conan install . -e CONAN_IMPORT_PATH=Release -g cmake_multi
+        dest = os.getenv("CONAN_IMPORT_PATH", "bin")
+        self.copy("*.dll", dst=dest, src="bin")
+        self.copy("*.dylib*", dst=dest, src="lib")
+
+    def build(self):
+        cmake = self._configure_cmake()
+        cmake.build()
+
+    def package(self):
+        cmake = self._configure_cmake()
+        cmake.install()
+        self.copy("license*", ignore_case=True, keep_path=True)
+
