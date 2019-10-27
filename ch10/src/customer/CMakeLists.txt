@@ -85,7 +85,7 @@ if (UNIX)
     #     message(STATUS "dpkg not found - won't be able to create DEB packages")
     # else ()
     set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-    set(CPACK_DEBIAN_PACKAGE_DEPENDS "${CPACK_DEBIAN_PACKAGE_DEPENDS} libcpprest2.10 (>= 2.10.10-1)")
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS "${CPACK_DEBIAN_PACKAGE_DEPENDS} libcpprest2.10 (>= 2.10.2-6)")
     list(APPEND CPACK_GENERATOR DEB)
     # endif ()
 endif ()
@@ -108,3 +108,25 @@ add_custom_target(conan
         COMMAND conan create . customer/testing
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
         VERBATIM)
+
+# Container creation
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Dockerfile.in ${CMAKE_BINARY_DIR}/Dockerfile @ONLY)
+
+find_program(Docker_EXECUTABLE docker)
+if (NOT Docker_EXECUTABLE)
+    message(FATAL_ERROR "Docker not found")
+endif ()
+
+add_custom_target(customer-deb
+        COMMENT "Creating Customer DEB package"
+        COMMAND ${CMAKE_CPACK_COMMAND} -G DEB
+        WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        VERBATIM)
+add_dependencies(customer-deb customer)
+
+add_custom_target(docker
+        COMMENT "Preparing Docker image"
+        COMMAND ${Docker_EXECUTABLE} build ${CMAKE_BINARY_DIR} -t customer:${PROJECT_VERSION} -t customer:latest
+        VERBATIM)
+add_dependencies(docker customer-deb)

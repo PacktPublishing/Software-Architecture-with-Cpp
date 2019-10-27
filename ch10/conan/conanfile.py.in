@@ -4,7 +4,7 @@ from conans import ConanFile, CMake
 
 class CustomerConan(ConanFile):
     name = "customer"
-    version = "0.0.1"
+    version = "@PROJECT_VERSION@"
     license = "MIT"
     author = "Authors"
     homepage = "https://example.com"
