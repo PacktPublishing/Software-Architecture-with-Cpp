@@ -28,4 +28,4 @@ In the build directory, run `cmake --build . --target conan`.
 
 ## Building a Docker container
 
-
+In the build directory, run `cmake --build . --target docker`.
