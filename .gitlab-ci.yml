@@ -1,0 +1,13 @@
+default:
+  image: conanio/gcc5
+
+build:
+  script:
+    - mkdir build
+    - cd build
+    - conan profile new default
+    - conan profile update settings.compiler=gcc default
+    - conan profile update settings.compiler.libcxx=libstdc++11 default
+    - conan install ../ch08 --build=missing
+    - cmake ../ch08
+    - cmake --build .
