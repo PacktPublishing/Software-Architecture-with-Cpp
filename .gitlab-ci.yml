@@ -1,13 +1,30 @@
+cache:
+  key: all
+  paths:
+    - .conan/data
+
 default:
-  image: conanio/gcc5
+  image: conanio/gcc9
+
+before_script:
+  - export CONAN_USER_HOME="$CI_PROJECT_DIR"
+  - sudo apt-get update && sudo apt-get install -y docker.io
+  - mkdir build
+  - cd build
+  - conan profile new default
+  - conan profile update settings.compiler=gcc default
+  - conan profile update settings.compiler.libcxx=libstdc++11 default
+  - conan profile update settings.compiler.version=9 default
+  - conan profile update settings.arch=x86_64 default
+  - conan profile update settings.os=Linux default
+  - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
 
 build:
   script:
-    - mkdir build
-    - cd build
-    - conan profile new default
-    - conan profile update settings.compiler=gcc default
-    - conan profile update settings.compiler.libcxx=libstdc++11 default
     - conan install ../ch08 --build=missing
     - cmake ../ch08
     - cmake --build .
+
+after_script:
+  - ls ~/.conan
+  - ls .conan
