@@ -1,5 +1,5 @@
 add_executable(unittests unit.cpp)
 add_executable(catch2tests catch.cpp)
-target_link_libraries(catch2tests domifair::libcustomer)
+target_link_libraries(catch2tests domifair::libcustomer CONAN_PKG::Catch2)
 target_link_libraries(unittests domifair::libcustomer gtest gtest_main)
 gtest_discover_tests(unittests)
