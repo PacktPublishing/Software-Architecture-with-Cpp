@@ -1,8 +1,7 @@
 add_library(libcustomer lib.cpp)
 add_library(domifair::libcustomer ALIAS libcustomer)
 set_target_properties(libcustomer PROPERTIES OUTPUT_NAME customer)
-target_compile_features(libcustomer PRIVATE cxx_std_17)
-target_compile_features(libcustomer INTERFACE cxx_std_11)
+target_compile_features(libcustomer PUBLIC cxx_std_17)
 target_include_directories(libcustomer
         PUBLIC
         $<INSTALL_INTERFACE:include>
