@@ -9,9 +9,12 @@ with pkgs;
 
 mkShell {
   buildInputs = [
+    autoconf
+    automake
+    clang
     cmake
     gcc
-    clang
+    libtool
     python3
   ];
   shellHook =''
