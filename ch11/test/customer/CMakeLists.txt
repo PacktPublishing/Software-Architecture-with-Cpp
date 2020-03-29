@@ -14,7 +14,7 @@ target_compile_features(gmocks PRIVATE cxx_std_17)
 gtest_discover_tests(gmocks)
 
 add_executable(cppunittests cppunit.cpp)
-target_link_libraries(cppunittests PRIVATE domifair::libcustomer cppunit)
+target_link_libraries(cppunittests PRIVATE domifair::libcustomer cppunit::cppunit)
 target_compile_options(cppunittests PRIVATE ${BASE_COMPILE_FLAGS})
 
 include(doctest)

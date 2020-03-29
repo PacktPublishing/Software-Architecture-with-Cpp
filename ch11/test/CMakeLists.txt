@@ -1,8 +1,6 @@
-include (FetchGTest)
+include(FetchGTest)
 include(GoogleTest)
 
-fetch_gtest()
-
-include(AddCppUnit)
+include(FetchCppUnit)
 
 add_subdirectory(customer)
