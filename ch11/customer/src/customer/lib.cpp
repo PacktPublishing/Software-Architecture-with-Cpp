@@ -8,7 +8,7 @@ using namespace ::web;
 using namespace ::web::http;
 using ::utility::string_t;
 
-auto Responder::respond(const http_request &request, status_code status,
+auto responder::respond(const http_request &request, status_code status,
                         const json::value &response) -> void {
   json::value resp;
   resp[string_t("status")] = json::value::number(status);
@@ -16,7 +16,7 @@ auto Responder::respond(const http_request &request, status_code status,
   request.reply(status, resp);
 }
 
-auto Responder::prepare_response(const std::string &name)
+auto responder::prepare_response(const std::string &name)
     -> std::pair<status_code, json::value> {
   return {status_codes::OK,
           json::value::string(string_t("Hello, ") + name + "!")};

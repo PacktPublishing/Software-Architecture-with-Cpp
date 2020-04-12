@@ -5,7 +5,9 @@ Hands-On Software Architecture with C++ by Packt Publishing
 
 ### Building
 
-To build this project out of source, run:
+The customer and mobile app components must be built separately.
+
+To build each of them out of source, first cd to their directory, and then run:
 
 ```bash
 mkdir build
