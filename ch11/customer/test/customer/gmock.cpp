@@ -8,7 +8,7 @@ using namespace ::web::http;
 
 namespace {
 
-class ResponderMock {
+class responder_mock {
  public:
   MOCK_METHOD((std::pair<::web::http::status_code,
                          ::web::json::value>),  // note the parens
@@ -20,7 +20,7 @@ class ResponderMock {
               ());
 };
 
-MATCHER_P(ContainsString, string, "") { return arg.as_string() == string; }
+MATCHER_P(contains_string, string, "") { return arg.as_string() == string; }
 
 }  // namespace
 
@@ -29,11 +29,15 @@ TEST(basic_responses,
   http_request request{"GET"};
   request.set_request_uri("/customer?name=Bob");
 
-  auto responder = StrictMock<ResponderMock>{};
+  auto responder = StrictMock<responder_mock>{};
   auto response = json::value{"my response"};
   EXPECT_CALL(responder, prepare_response("Bob"))
       .WillOnce(Return(std::pair{status_codes::OK, response}));
   EXPECT_CALL(responder, respond(Ref(request), status_codes::OK,
-                                 ContainsString("my response")));
+                                 contains_string("my response")));
   handle_get(request, responder);
+}
+
+TEST(reviews, given_a_new_rating_when_customer_updates_review_) {
+
 }
