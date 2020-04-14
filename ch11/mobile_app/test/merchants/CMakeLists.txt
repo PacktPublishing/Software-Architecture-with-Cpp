@@ -1,2 +1,3 @@
 add_executable(merchanttests reviewtests.cpp)
 target_link_libraries(merchanttests PRIVATE merchants gmock_main)
+gtest_discover_tests(merchanttests)
