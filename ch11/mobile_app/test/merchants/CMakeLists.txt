@@ -4,5 +4,7 @@ gtest_discover_tests(merchanttests_gmock)
 
 add_executable(merchanttests_trompeloeil reviewtests_trompeloeil.cpp)
 target_compile_features(merchanttests_trompeloeil PRIVATE cxx_std_17)
-target_link_libraries(merchanttests_trompeloeil PRIVATE merchants CONAN_PKG::trompeloeil CONAN_PKG::Catch2)
+target_link_libraries(
+  merchanttests_trompeloeil PRIVATE merchants CONAN_PKG::trompeloeil
+                                    CONAN_PKG::Catch2)
 catch_discover_tests(merchanttests_trompeloeil)

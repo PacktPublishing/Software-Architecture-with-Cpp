@@ -6,7 +6,7 @@
 #include <string>
 
 class stars {
-public:
+ public:
   explicit constexpr stars(float stars = 0.f) : stars_{stars} {
     check_range(stars);
   }
@@ -18,7 +18,7 @@ public:
   }
   constexpr bool operator!=(const stars &rhs) const { return !(rhs == *this); }
 
-private:
+ private:
   static constexpr void check_range(float stars) {
     if (stars > 5 || stars < 0)
       throw std::invalid_argument{
@@ -39,14 +39,14 @@ struct review {
 };
 
 class i_customer_review_store {
-public:
+ public:
   using CustomerId = review::customer_id_t;
   using MerchantId = review::merchant_id_t;
 
   virtual ~i_customer_review_store() = default;
 
-  virtual std::optional<review>
-  get_review_for_merchant(MerchantId merchant_id) = 0;
+  virtual std::optional<review> get_review_for_merchant(
+      MerchantId merchant_id) = 0;
 
   virtual void post_review(review review) = 0;
 };

@@ -14,7 +14,7 @@ void history_of_visited_merchants::rate(std::size_t merchant_index,
   }
 }
 
-const i_visited_merchant &
-history_of_visited_merchants::get_merchant(std::size_t merchant_index) {
+const i_visited_merchant &history_of_visited_merchants::get_merchant(
+    std::size_t merchant_index) {
   return *merchants_[merchant_index];
 }

@@ -20,7 +20,7 @@ class TestBasicResponses : public CppUnit::TestFixture {
   CPPUNIT_TEST(testBob);
   CPPUNIT_TEST_SUITE_END();
 
-protected:
+ protected:
   void testBob();
 };
 
