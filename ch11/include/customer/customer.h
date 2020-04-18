@@ -7,7 +7,7 @@
 #include <utility>
 
 class Responder {
-public:
+ public:
   auto prepare_response(const std::string &name)
       -> std::pair<::web::http::status_code, ::web::json::value>;
 

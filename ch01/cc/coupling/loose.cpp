@@ -4,32 +4,32 @@
 #include <vector>
 
 class FrontEndDeveloper {
-public:
+ public:
   void develop() { developFrontEnd(); }
 
-private:
+ private:
   void developFrontEnd();
 };
 
 class BackEndDeveloper {
-public:
+ public:
   void develop() { developBackEnd(); }
 
-private:
+ private:
   void developBackEnd();
 };
 
 class MiddlewareDeveloper {
-public:
+ public:
   void develop() { developMiddleware(); }
 
-private:
+ private:
   void developMiddleware();
 };
 
 template <typename... Devs>
 class Project {
-public:
+ public:
   using Developers = std::vector<std::variant<Devs...>>;
 
   explicit Project(Developers developers)
@@ -41,7 +41,7 @@ public:
     }
   }
 
-private:
+ private:
   Developers developers_;
 };
 

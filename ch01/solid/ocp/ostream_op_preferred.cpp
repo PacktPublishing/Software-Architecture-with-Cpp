@@ -2,11 +2,11 @@
 
 template <typename T, typename U>
 class MyPair {
-public:
+ public:
   T &firstMember();
   U &secondMember();
 
-private:
+ private:
   friend std::ostream &operator<<(std::ostream &stream, const MyPair &mp);
 
   T first_;

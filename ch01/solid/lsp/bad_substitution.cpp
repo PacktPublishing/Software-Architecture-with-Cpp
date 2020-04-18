@@ -1,17 +1,17 @@
 class Rectangle {
-public:
+ public:
   virtual ~Rectangle() = default;
   virtual double area() { return width_ * height_; }
   virtual void setWidth(double width) { width_ = width; }
   virtual void setHeight(double height) { height_ = height_; }
 
-private:
+ private:
   double width_;
   double height_;
 };
 
 class Square : public Rectangle {
-public:
+ public:
   double area() override;
   void setWidth(double width) override;
   void setHeight(double height) override;

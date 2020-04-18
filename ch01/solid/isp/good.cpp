@@ -1,23 +1,23 @@
 class IBlender {
-public:
+ public:
   virtual ~IBlender() = default;
   virtual void blend() = 0;
 };
 
 class ICutter {
-public:
+ public:
   virtual ~ICutter() = default;
   virtual void slice() = 0;
   virtual void dice() = 0;
 };
 
 class Blender : public IBlender {
-public:
+ public:
   void blend() override;
 };
 
 class AnotherFoodProcessor : public IBlender, public ICutter {
-public:
+ public:
   void blend() override;
   void slice() override;
   void dice() override;

@@ -1,10 +1,10 @@
 class IFoodProcessor {
-public:
+ public:
   virtual ~IFoodProcessor() = default;
   virtual void blend() = 0;
 };
 
 class Blender : public IFoodProcessor {
-public:
+ public:
   void blend() override;
 };

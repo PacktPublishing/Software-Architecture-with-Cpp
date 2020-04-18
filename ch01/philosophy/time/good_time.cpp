@@ -8,8 +8,8 @@ struct Duration {
 
 auto d = Duration();
 // d.millis_ = 100; // compilation error, as 100 could mean anything
-d.millis_ = 100ms; // okay
+d.millis_ = 100ms;  // okay
 
-auto timeout = 1s; // or std::chrono::seconds(1);
+auto timeout = 1s;  // or std::chrono::seconds(1);
 d.millis_ =
-    timeout; // okay, seconds will be converted automatically to milliseconds
+    timeout;  // okay, seconds will be converted automatically to milliseconds

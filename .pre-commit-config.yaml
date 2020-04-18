@@ -1,0 +1,25 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.5.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-byte-order-marker
+      - id: check-case-conflict
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+      # Prevent direct commits to the following branches
+      - id: no-commit-to-branch
+        args: [--branch, master]
+      - id: trailing-whitespace
+  - repo: https://github.com/pocc/pre-commit-hooks
+    rev: v1.1.0
+    hooks:
+      - id: clang-format
+        args: [--style=Google, -i]
+  - repo: https://github.com/doomhammer/cmake-format-pre-commit-hook
+    rev: cmake-format-0.6.9
+    hooks:
+      - id: cmake-format

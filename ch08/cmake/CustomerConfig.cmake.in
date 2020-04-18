@@ -1,9 +1,10 @@
 include(CMakeFindDependencyMacro)
 
-get_filename_component(@PROJECT_NAME@_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+get_filename_component(@PROJECT_NAME@_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}"
+                       PATH)
 
 # TODO: check if conan dependencies require handling here
 
-if (NOT TARGET domifair::@PROJECT_NAME@)
-	include("${@PROJECT_NAME@_CMAKE_DIR}/@PROJECT_NAME@Targets.cmake")
-endif ()
+if(NOT TARGET domifair::@PROJECT_NAME@)
+  include("${@PROJECT_NAME@_CMAKE_DIR}/@PROJECT_NAME@Targets.cmake")
+endif()

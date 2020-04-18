@@ -1,27 +1,27 @@
 class FrontEndDeveloper {
-public:
+ public:
   void developFrontEnd();
 };
 
 class BackEndDeveloper {
-public:
+ public:
   void developBackEnd();
 };
 
 class MiddlewareDeveloper {
-public:
+ public:
   void developMiddleware();
 };
 
 class Project {
-public:
+ public:
   void deliver() {
     fed_.developFrontEnd();
     med_.developMiddleWare();
     bed_.developBackend();
   }
 
-private:
+ private:
   FrontEndDeveloper fed_;
   MiddlewareDeveloper med_;
   BackEndDeveloper bed_;
