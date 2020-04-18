@@ -5,7 +5,7 @@
 #include "catch2/catch.hpp"
 
 TEST_CASE("Basic responses",
-          "Given Name When Prepare Reponses Then Greets Friendly") {
+          "Given Name When Prepare Responses Then Greets Friendly") {
   auto name = "Bob";
   auto code_and_string = responder{}.prepare_response(name);
   REQUIRE(code_and_string.first == web::http::status_codes::OK);
