@@ -2,6 +2,7 @@ add_executable(catch2tests catch.cpp)
 target_link_libraries(catch2tests PRIVATE domifair::libcustomer
                                           CONAN_PKG::Catch2)
 target_compile_options(catch2tests PRIVATE ${BASE_COMPILE_FLAGS})
+catch_discover_tests(catch2tests)
 
 add_executable(gtests gtest.cpp)
 target_link_libraries(gtests PRIVATE domifair::libcustomer gtest_main)
