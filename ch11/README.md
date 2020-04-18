@@ -20,6 +20,7 @@ conan profile update settings.compiler.version=9 default
 conan profile update settings.arch=x86_64 default
 conan profile update settings.os=Linux default
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
+conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
 ```
 
 ### Building

@@ -28,6 +28,7 @@ prerequisites:
     - conan profile update settings.os=Linux default
     - conan profile update settings.os_build=Linux default
     - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
+    - conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
 
 build:
   stage: build

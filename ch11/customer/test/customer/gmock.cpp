@@ -37,7 +37,3 @@ TEST(basic_responses,
                                  contains_string("my response")));
   handle_get(request, responder);
 }
-
-TEST(reviews, given_a_new_rating_when_customer_updates_review_) {
-
-}
