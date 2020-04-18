@@ -16,7 +16,7 @@ int main() {
 
   auto responder = Responder{};
   listener.support(
-      methods::GET, // other verbs coming soon!
+      methods::GET,  // other verbs coming soon!
       [&](const auto &request) { handle_get(request, responder); });
 
   listener.open().wait();

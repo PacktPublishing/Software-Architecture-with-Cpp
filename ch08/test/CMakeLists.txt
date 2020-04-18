@@ -1,4 +1,4 @@
-include (FetchGTest)
+include(FetchGTest)
 include(GoogleTest)
 
 fetch_gtest()

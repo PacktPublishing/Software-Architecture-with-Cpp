@@ -4,5 +4,5 @@
 #include <thread>
 
 void perform_work(Payload payload) {
-    std::this_thread::sleep_for(std::chrono::seconds(payload.amount));
+  std::this_thread::sleep_for(std::chrono::seconds(payload.amount));
 }

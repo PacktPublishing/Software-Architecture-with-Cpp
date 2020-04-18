@@ -1,17 +1,18 @@
 #pragma once
 
-class PaymentCalculator {
-public:
-    double calculate() const;
+class PaymentCalculator;
+{
+ public:
+  double calculate() const;
 
-    void setHours(double hours);
+  void setHours(double hours);
 
-    void setHourlyRate(double rate);
+  void setHourlyRate(double rate);
 
-    void setTaxPercentage(double tax);
+  void setTaxPercentage(double tax);
 
-private:
-    double hours_;
-    double netHourlyRate_;
-    double taxPercentage_;
+ private:
+  double hours_;
+  double netHourlyRate_;
+  double taxPercentage_;
 };

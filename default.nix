@@ -1,7 +1,7 @@
 { pkgs ? import (
   builtins.fetchTarball {
-    url = "https://github.com/nixos/nixpkgs/archive/e1d58266d55a91477d57b0715e3328968419663e.tar.gz";
-    sha256 = "11jjmnpbxgq749sxggbrk6718fn8k0rqhhh8rllzphgwrsf1h6cs";
+    url = "https://github.com/nixos/nixpkgs/archive/f460e62d9b367a0bfd71148ef34f44421d0e82cb.tar.gz";
+    sha256 = "1pazl2zy39zjih6s1dyvlxm849mwj3f6ijji2c3913n6kw0s3nh0";
   }
 ) {} }:
 
@@ -15,9 +15,10 @@ mkShell {
     cmake
     gcc
     libtool
-    python3
+    pre-commit
+    python3Packages.setuptools
   ];
-  shellHook =''
-    pip3 install conan==1.23.0
+  shellHook = ''
+    pre-commit install
   '';
 }

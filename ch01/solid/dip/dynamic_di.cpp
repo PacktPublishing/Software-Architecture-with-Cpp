@@ -8,23 +8,23 @@ class Developer {
 };
 
 class FrontEndDeveloper : public Developer {
-public:
+ public:
   void develop() override { developFrontEnd(); }
 
-private:
+ private:
   void developFrontEnd();
 };
 
 class BackEndDeveloper : public Developer {
-public:
+ public:
   void develop() override { developBackEnd(); }
 
-private:
+ private:
   void developBackEnd();
 };
 
 class Project {
-public:
+ public:
   using Developers = std::vector<std::unique_ptr<Developer>>;
 
   Project(Developers developers) : developers_{std::move(developers)} {}
@@ -35,6 +35,6 @@ public:
     }
   }
 
-private:
+ private:
   Developers developers_;
 };

@@ -46,4 +46,3 @@ class CustomerConan(ConanFile):
         cmake = self._configure_cmake()
         cmake.install()
         self.copy("license*", ignore_case=True, keep_path=True)
-

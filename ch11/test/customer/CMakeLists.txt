@@ -1,5 +1,6 @@
 add_executable(catch2tests catch.cpp)
-target_link_libraries(catch2tests PRIVATE domifair::libcustomer CONAN_PKG::Catch2)
+target_link_libraries(catch2tests PRIVATE domifair::libcustomer
+                                          CONAN_PKG::Catch2)
 target_compile_options(catch2tests PRIVATE ${BASE_COMPILE_FLAGS})
 
 add_executable(gtests gtest.cpp)
@@ -14,7 +15,8 @@ target_compile_features(gmocks PRIVATE cxx_std_17)
 gtest_discover_tests(gmocks)
 
 add_executable(cppunittests cppunit.cpp)
-target_link_libraries(cppunittests PRIVATE domifair::libcustomer cppunit::cppunit)
+target_link_libraries(cppunittests PRIVATE domifair::libcustomer
+                                           cppunit::cppunit)
 target_compile_options(cppunittests PRIVATE ${BASE_COMPILE_FLAGS})
 
 include(doctest)

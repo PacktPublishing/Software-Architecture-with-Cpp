@@ -9,9 +9,9 @@ using namespace ::web::http;
 namespace {
 
 class ResponderMock {
-public:
+ public:
   MOCK_METHOD((std::pair<::web::http::status_code,
-                         ::web::json::value>), // note the parens
+                         ::web::json::value>),  // note the parens
               prepare_response, (const std::string &name), ());
   MOCK_METHOD(void, respond,
               (const ::web::http::http_request &request,
@@ -22,7 +22,7 @@ public:
 
 MATCHER_P(ContainsString, string, "") { return arg.as_string() == string; }
 
-} // namespace
+}  // namespace
 
 TEST(basic_responses,
      given_name_when_handle_get_then_response_is_prepared_and_sent) {

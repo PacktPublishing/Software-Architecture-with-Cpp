@@ -1,18 +1,18 @@
 #pragma once
 
-#include <gsl/pointers> // contains gsl::not_null
+#include <gsl/pointers>  // contains gsl::not_null
 
 class Consultant;
 
 class PaymentCalculator {
-public:
-    double calculate() const;
+ public:
+  double calculate() const;
 
-    void setConsultant(const Consultant &c);
+  void setConsultant(const Consultant &c);
 
-    void setTaxPercentage(double tax);
+  void setTaxPercentage(double tax);
 
-private:
-    gsl::not_null<const Consultant *> consultant_;
-    double taxPercentage_;
+ private:
+  gsl::not_null<const Consultant *> consultant_;
+  double taxPercentage_;
 };
