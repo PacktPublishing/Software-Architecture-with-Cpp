@@ -18,6 +18,7 @@ add_executable(cppunittests cppunit.cpp)
 target_link_libraries(cppunittests PRIVATE domifair::libcustomer
                                            cppunit::cppunit)
 target_compile_options(cppunittests PRIVATE ${BASE_COMPILE_FLAGS})
+add_test(NAME cppunittests COMMAND cppunittests)
 
 include(doctest)
 
