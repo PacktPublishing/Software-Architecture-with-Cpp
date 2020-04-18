@@ -6,12 +6,12 @@
 #include <unordered_map>
 
 class fake_customer_review_store : public i_customer_review_store {
-public:
+ public:
   explicit fake_customer_review_store(review::customer_id_t customer_id)
       : customer_id_(customer_id) {}
 
-  std::optional<review>
-  get_review_for_merchant(review::merchant_id_t merchant_id) final {
+  std::optional<review> get_review_for_merchant(
+      review::merchant_id_t merchant_id) final {
     if (auto it = reviews_.find(merchant_id); it != std::end(reviews_)) {
       return it->second;
     }
@@ -26,7 +26,7 @@ public:
     reviews_[r.merchant] = std::move(r);
   }
 
-private:
+ private:
   review::customer_id_t customer_id_;
   std::unordered_map<review::merchant_id_t, review> reviews_;
 };

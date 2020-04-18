@@ -14,7 +14,7 @@
 using trompeloeil::_;
 
 class mock_visited_merchant : public i_visited_merchant {
-public:
+ public:
   MAKE_MOCK0(get_rating, stars(), override);
   MAKE_MOCK1(post_rating, void(stars s), override);
 };
