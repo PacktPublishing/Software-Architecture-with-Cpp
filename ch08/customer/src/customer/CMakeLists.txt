@@ -1,8 +1,7 @@
 add_library(libcustomer lib.cpp)
 add_library(domifair::libcustomer ALIAS libcustomer)
 set_target_properties(libcustomer PROPERTIES OUTPUT_NAME customer)
-target_compile_features(libcustomer PRIVATE cxx_std_17)
-target_compile_features(libcustomer INTERFACE cxx_std_11)
+target_compile_features(libcustomer PUBLIC cxx_std_17)
 target_include_directories(
   libcustomer PUBLIC $<INSTALL_INTERFACE:include>
                      $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>)
@@ -76,9 +75,8 @@ set(CPACK_PACKAGE_DESCRIPTION_SUMMARY
 set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE") # used by
-                                                               # installers like
-                                                               # NSIS
+# used by installers like NSIS
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
 
 list(APPEND CPACK_GENERATOR TGZ ZIP)

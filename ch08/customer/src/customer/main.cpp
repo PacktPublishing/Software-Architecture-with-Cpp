@@ -14,7 +14,10 @@ int main() {
   using ::web::http::experimental::listener::http_listener;
   auto listener = http_listener{string_t("http://0.0.0.0:8080/customer")};
 
-  listener.support(methods::GET, handle_get);  // other verbs coming soon!
+  auto get_responder = responder{};
+  listener.support(
+      methods::GET,  // other verbs coming soon!
+      [&](const auto &request) { handle_get(request, get_responder); });
 
   listener.open().wait();
 
