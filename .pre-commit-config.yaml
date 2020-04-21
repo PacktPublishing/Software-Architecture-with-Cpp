@@ -19,7 +19,7 @@ repos:
     hooks:
       - id: clang-format
         args: [--style=Google, -i]
-  - repo: https://github.com/doomhammer/cmake-format-pre-commit-hook
-    rev: cmake-format-0.6.9
+  - repo: https://github.com/iconmaster5326/cmake-format-pre-commit-hook
+    rev: v0.6.9
     hooks:
       - id: cmake-format
