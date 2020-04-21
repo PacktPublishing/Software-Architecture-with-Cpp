@@ -1,7 +1,7 @@
 # Hands-On-Software-Architecture-with-Cpp
 Hands-On Software Architecture with C++ by Packt Publishing
 
-## Chapter 11: [Writing Testable Code](ch11)
+## Chapter 11: Writing Testable Code
 
 ### Prerequisites
 
@@ -32,7 +32,11 @@ To build each of them out of source, first cd to their directory, and then run:
 ```bash
 mkdir build
 cd build
-conan install .. --build=missing -pr=default # only run this for customer
+conan install .. --build=missing -pr=default
 cmake ..
 cmake --build .
 ```
+
+### Testing
+
+To run tests from each of the projects, cd into their respective build directory, and then simply run `ctest`.
