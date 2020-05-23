@@ -1,3 +1,3 @@
 #include <customer/customer.h>
 
-int main() { prepare_response("Conan"); }
+int main() { responder{}.prepare_response("Conan"); }

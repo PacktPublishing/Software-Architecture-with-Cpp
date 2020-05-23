@@ -36,8 +36,8 @@ build:
     - sudo apt-get update && sudo apt-get install -y docker.io
     - mkdir -p build
     - cd build
-    - conan install ../ch08 --build=missing
-    - cmake -DBUILD_TESTING=1 ../ch08
+    - conan install ../ch08/customer --build=missing
+    - cmake -DBUILD_TESTING=1 ../ch08/customer
     - cmake --build .
 
 test:
