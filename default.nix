@@ -14,7 +14,6 @@ mkShell {
     clang
     cmake
     gcc
-    openssl
     libtool
     pre-commit
     python3Packages.setuptools

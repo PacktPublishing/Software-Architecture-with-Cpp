@@ -24,12 +24,12 @@ conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-co
 
 ### Building
 
-To build this project out of source, run:
+To build the customer project out of source, first cd to its directory, and then run:
 
 ```bash
 mkdir build
 cd build
-conan install .. --build=missing
+conan install .. --build=missing -pr=default
 cmake ..
 cmake --build .
 ```
