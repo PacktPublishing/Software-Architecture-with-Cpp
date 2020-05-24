@@ -4,7 +4,7 @@ set_target_properties(libcustomer PROPERTIES OUTPUT_NAME customer)
 target_compile_features(libcustomer PUBLIC cxx_std_17)
 target_include_directories(
   libcustomer PUBLIC $<INSTALL_INTERFACE:include>
-                     $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>)
+                     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>)
 target_compile_definitions(libcustomer PUBLIC _TURN_OFF_PLATFORM_STRING
 )# see https://github.com/Microsoft/cpprestsdk/issues/230
 target_link_libraries(libcustomer PUBLIC CONAN_PKG::cpprestsdk)
@@ -28,7 +28,7 @@ install(
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ # last slash is important here
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ # last slash is important here
         DESTINATION include)
 
 if(NOT CONAN_EXPORTED)
@@ -38,7 +38,7 @@ if(NOT CONAN_EXPORTED)
     NAMESPACE domifair::
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/Customer)
 
-  configure_file(${CMAKE_SOURCE_DIR}/cmake/CustomerConfig.cmake.in
+  configure_file(${PROJECT_SOURCE_DIR}/cmake/CustomerConfig.cmake.in
                  CustomerConfig.cmake @ONLY)
 
   include(CMakePackageConfigHelpers)
@@ -53,7 +53,7 @@ if(NOT CONAN_EXPORTED)
 endif()
 
 install(
-  FILES ${CMAKE_SOURCE_DIR}/LICENSE
+  FILES ${PROJECT_SOURCE_DIR}/LICENSE
   DESTINATION $<IF:$<BOOL:${CONAN_EXPORTED}>,licenses,${CMAKE_INSTALL_DOCDIR}>)
 
 # Exporting
@@ -76,27 +76,29 @@ set(CPACK_PACKAGE_VERSION_MAJOR ${PROJECT_VERSION_MAJOR})
 set(CPACK_PACKAGE_VERSION_MINOR ${PROJECT_VERSION_MINOR})
 set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 # used by installers like NSIS
-set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/LICENSE")
-set(CPACK_RESOURCE_FILE_README "${CMAKE_SOURCE_DIR}/README.md")
+set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
 
 list(APPEND CPACK_GENERATOR TGZ ZIP)
 if(UNIX)
-  find_program(RPMBUILD_PROGRAM rpmbuild)
-  if(NOT ${RPMBUILD_PROGRAM})
-    message(STATUS "rpmbuild not found - won't be able to create RPM packages")
+  find_program(DPKG_PROGRAM dpkg)
+  if(DPKG_PROGRAM)
+    list(APPEND CPACK_GENERATOR DEB)
+    set(CPACK_DEBIAN_PACKAGE_DEPENDS
+        "${CPACK_DEBIAN_PACKAGE_DEPENDS} libcpprest2.10 (>= 2.10.2-6)")
+    set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
   else()
-    list(APPEND CPACK_GENERATOR RPM)
-    # TODO: dependencies etc.
+    message(STATUS "dpkg not found - won't be able to create DEB packages")
   endif()
 
-  # TODO: proper DEB building possibility detection find_program(DPKG_PROGRAM
-  # dpkg) if (NOT ${DPKG_PROGRAM}) message(STATUS "dpkg not found - won't be
-  # able to create DEB packages") else ()
-  set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
-  set(CPACK_DEBIAN_PACKAGE_DEPENDS
-      "${CPACK_DEBIAN_PACKAGE_DEPENDS} libcpprest2.10 (>= 2.10.2-6)")
-  list(APPEND CPACK_GENERATOR DEB)
-  # endif ()
+  find_program(RPMBUILD_PROGRAM rpmbuild)
+  if(RPMBUILD_PROGRAM)
+    list(APPEND CPACK_GENERATOR RPM)
+    set(CPACK_RPM_PACKAGE_REQUIRES
+        "${CPACK_RPM_PACKAGE_REQUIRES} cpprest >= 2.10.2-6")
+  else()
+    message(STATUS "rpmbuild not found - won't be able to create RPM packages")
+  endif()
 endif()
 
 set(CPACK_SOURCE_IGNORE_FILES /.git /dist /.*build.* /\\\\.DS_Store)
@@ -105,13 +107,13 @@ include(CPack)
 
 # Conan support
 
-configure_file(${CMAKE_SOURCE_DIR}/conan/conanfile.py.in
+configure_file(${PROJECT_SOURCE_DIR}/conan/conanfile.py.in
                ${CMAKE_CURRENT_BINARY_DIR}/conan/conanfile.py @ONLY)
 
 add_custom_target(
   conan
   COMMAND
-    ${CMAKE_COMMAND} -E copy_directory ${CMAKE_SOURCE_DIR}/conan/test_package/
+    ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/conan/test_package/
     ${CMAKE_CURRENT_BINARY_DIR}/conan/test_package
   COMMAND conan create . customer/testing
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
@@ -120,7 +122,7 @@ add_custom_target(
 # Container creation
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Dockerfile.in
-               ${CMAKE_BINARY_DIR}/Dockerfile @ONLY)
+               ${PROJECT_BINARY_DIR}/Dockerfile @ONLY)
 
 find_program(Docker_EXECUTABLE docker)
 if(NOT Docker_EXECUTABLE)
@@ -131,14 +133,14 @@ add_custom_target(
   customer-deb
   COMMENT "Creating Customer DEB package"
   COMMAND ${CMAKE_CPACK_COMMAND} -G DEB
-  WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
   VERBATIM)
-add_dependencies(customer-deb customer)
+add_dependencies(customer-deb libcustomer)
 
 add_custom_target(
   docker
   COMMENT "Preparing Docker image"
-  COMMAND ${Docker_EXECUTABLE} build ${CMAKE_BINARY_DIR} -t
+  COMMAND ${Docker_EXECUTABLE} build ${PROJECT_BINARY_DIR} -t
           customer:${PROJECT_VERSION} -t customer:latest
   VERBATIM)
 add_dependencies(docker customer-deb)
