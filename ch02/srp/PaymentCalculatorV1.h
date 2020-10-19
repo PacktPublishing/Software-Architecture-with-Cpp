@@ -1,7 +1,6 @@
 #pragma once
 
-class PaymentCalculator;
-{
+class PaymentCalculator {
  public:
   double calculate() const;
 

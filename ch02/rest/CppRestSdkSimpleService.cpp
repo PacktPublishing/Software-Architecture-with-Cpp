@@ -18,9 +18,11 @@ void respond(const http_request &request, const status_code &status,
 
 int main() {
   auto listener = ::web::http::experimental::listener::http_listener(
-      U("http://localhost/greeter"));
+      U("http://localhost:3000/greeter"));
   listener.open().wait();
   listener.support(methods::GET, [](http_request req) {
+    std::cout << "request:" << std::endl << req.to_string() << std::endl;
+
     auto parameters = uri::split_query(req.request_uri().query());
     auto keyValueIt = parameters.find(U("name"));
 
