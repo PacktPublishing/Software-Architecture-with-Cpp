@@ -9,9 +9,9 @@ jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: cachix/install-nix-action@v8
-    - uses: actions/cache@v1
+    - uses: actions/checkout@v2
+    - uses: cachix/install-nix-action@v12
+    - uses: actions/cache@v2
       with:
         path: ~/.cache/pre-commit
         key: pre-commit|${{ hashFiles('.pre-commit-config.yaml') }}
