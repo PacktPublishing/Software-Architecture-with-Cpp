@@ -9,6 +9,7 @@ repos:
       - id: check-symlinks
       - id: check-yaml
       - id: end-of-file-fixer
+        exclude: 3rd-parties/
       - id: mixed-line-ending
       # Prevent direct commits to the following branches
       - id: no-commit-to-branch
@@ -19,7 +20,9 @@ repos:
     hooks:
       - id: clang-format
         args: [--style=Google, -i]
+        exclude: 3rd-parties/
   - repo: https://github.com/iconmaster5326/cmake-format-pre-commit-hook
     rev: v0.6.9
     hooks:
       - id: cmake-format
+        exclude: 3rd-parties/
