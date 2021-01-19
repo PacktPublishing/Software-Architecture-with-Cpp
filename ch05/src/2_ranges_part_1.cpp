@@ -52,7 +52,7 @@ std::ostream &operator<<(std::ostream &os, const Item &item) {
   return os;
 }
 
-enum Category {
+enum class Category {
   Food,
   Antiques,
   Books,

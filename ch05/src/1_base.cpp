@@ -51,7 +51,7 @@ std::ostream &operator<<(std::ostream &os, const Item &item) {
   return os;
 }
 
-enum Category {
+enum class Category {
   Food,
   Antiques,
   Books,
@@ -130,7 +130,7 @@ Items get_all_featured_items(const Stores &stores) {
 }
 
 void order_items_by_date_added(Items &items) {
-  auto date_comparator = [](const auto &left, const auto &right) {
+  auto date_comparator = []<typename T>(const T &left, const T &right) {
     return left->date_added > right->date_added;
   };
   std::sort(std::begin(items), std::end(items), date_comparator);

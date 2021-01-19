@@ -52,7 +52,7 @@ std::ostream &operator<<(std::ostream &os, const Item &item) {
   return os;
 }
 
-enum Category {
+enum class Category {
   Food,
   Antiques,
   Books,
@@ -114,12 +114,13 @@ auto get_featured_items_for_store(const Store &store) {
              [](const auto &item) { return gsl::not_null(&item); });
 }
 
-auto get_all_featured_items(const Stores &stores) {
+range auto get_all_featured_items(const Stores &stores) {
   auto all_featured = stores | views::transform([](auto elem) {
                         return get_featured_items_for_store(*elem);
                       }) |
                       views::join;
   auto as_items = Items{};
+  as_items.reserve(distance(all_featured));
   copy(all_featured, std::back_inserter(as_items));
   return as_items;
 }
