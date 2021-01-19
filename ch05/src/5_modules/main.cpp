@@ -59,12 +59,13 @@ auto get_featured_items_for_store(const Store &store) {
          views::transform([](const auto &item) { return &item; });
 }
 
-auto get_all_featured_items(const Stores &stores) -> Items {
+range auto get_all_featured_items(const Stores &stores) -> Items {
   auto all_featured = stores | views::transform([](auto elem) {
                         return get_featured_items_for_store(*elem);
                       }) |
                       views::join;
   auto as_items = Items{};
+  as_items.reserve(distance(all_featured));
   copy(all_featured, std::back_inserter(as_items));
   return as_items;
 }

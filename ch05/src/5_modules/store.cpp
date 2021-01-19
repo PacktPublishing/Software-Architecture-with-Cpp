@@ -43,7 +43,7 @@ export std::ostream &operator<<(std::ostream &os, const Item &item) {
   return os;
 }
 
-export enum Category {
+export enum class Category {
   Food,
   Antiques,
   Books,
