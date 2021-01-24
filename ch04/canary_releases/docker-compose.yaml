@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  front_proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile-front_proxy
+    networks:
+      - example_network
+    ports:
+      - 12345:12345
+      - 9901:9901
+
+  old_version:
+    image: hashicorp/http-echo
+    networks:
+      - example_network
+    command: -text "This is the old version of the app"
+
+  new_version:
+    image: hashicorp/http-echo
+    networks:
+      - example_network
+    command: -text "This is the new version of the app"
+
+networks:
+  example_network: {}
