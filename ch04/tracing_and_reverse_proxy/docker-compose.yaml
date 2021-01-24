@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  front_proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile-front_proxy
+    networks:
+      - example_network
+    ports:
+      - 12345:12345
+      - 9901:9901
+
+  example_service:
+    image: hashicorp/http-echo
+    networks:
+      - example_network
+    command: -text "It works!"
+
+  jaeger:
+    image: jaegertracing/all-in-one
+    environment:
+      - COLLECTOR_ZIPKIN_HTTP_PORT=9411
+    networks:
+      - example_network
+    ports:
+      - 16686:16686
+
+networks:
+  example_network: {}
