@@ -16,30 +16,20 @@ Chapter 5: [Leveraging C++ Language Features](ch05)
 
 Chapter 6: [Design Patterns and C++](ch06)
 
-Chapter 7: [Techniques for Debugging](ch07)
+Chapter 7: [Building and Packaging](ch07)
 
-Chapter 8: [Building and Packaging](ch08)
+Chapter 8: [Continuous Integration and Continuous Deployment](ch08)
 
-Chapter 9: [Applying Tools to Write Better Code](ch09)
+Chapter 9: [Writing Testable Code](ch09)
 
-Chapter 10: [Continuous Integration and Continuous Deployment](ch10)
+Chapter 10: [Security in Code and Deployment](ch10)
 
-Chapter 11: [Writing Testable Code](ch11)
+Chapter 11: [Performance](ch11)
 
-Chapter 12: [Security in Code and Deployment](ch12)
+Chapter 12: [Service Oriented Architecture](ch12)
 
-Chapter 13: [Scalability](ch13)
+Chapter 13: [Microservices](ch13)
 
-Chapter 14: [Performance](ch14)
+Chapter 14: [Containers](ch14)
 
-Chapter 15: [Service Oriented Architecture](ch15)
-
-Chapter 16: [Microservices](ch16)
-
-Chapter 17: [Containers](ch17)
-
-Chapter 18: [Cloud Native Design](ch18)
-
-Chapter 19: [Messaging Principles](ch19)
-
-Chapter 20: [Serverless Architecture](ch20)
+Chapter 15: [Cloud Native Design](ch15)

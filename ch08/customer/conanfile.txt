@@ -1,5 +1,7 @@
 [requires]
 cpprestsdk/2.10.14@bincrafters/stable
+Catch2/2.11.0@catchorg/stable
+doctest/2.3.7
 
 [generators]
 cmake

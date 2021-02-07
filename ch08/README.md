@@ -1,7 +1,7 @@
 # Hands-On-Software-Architecture-with-Cpp
 Hands-On Software Architecture with C++ by Packt Publishing
 
-## Chapter 8: Building and Packaging
+## Chapter 8: Writing Testable Code
 
 ### Prerequisites
 
@@ -20,11 +20,14 @@ conan profile update settings.compiler.version=9 default
 conan profile update settings.arch=x86_64 default
 conan profile update settings.os=Linux default
 conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
+conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
 ```
 
 ### Building
 
-To build the customer project out of source, first cd to its directory, and then run:
+The customer and mobile app components must be built separately.
+
+To build each of them out of source, first cd to their directory, and then run:
 
 ```bash
 mkdir build
@@ -37,22 +40,3 @@ cmake --build .
 ### Testing
 
 To run tests from each of the projects, cd into their respective build directory, and then simply run `ctest`.
-
-### Installing
-
-In the build directory, run `cmake --install .` to install the software into `${CMAKE_PREFIX_PATH}`. If no prefix is
-given, it will install system-wide. To change this, add `-DCMAKE_INSTALL_PREFIX=/path/to/install/to` to your cmake
-invocation.
-
-### Packaging
-
-In the build directory, run `cpack`. Simple as that. Assuming you're running on a system supporting DEB packages,
-you'll get a .tar.gz file, a .zip file, and a .deb package.
-
-### Building a Conan package
-
-In the build directory, run `cmake --build . --target conan`.
-
-### Building a Docker container
-
-In the build directory, run `cmake --build . --target docker`.
