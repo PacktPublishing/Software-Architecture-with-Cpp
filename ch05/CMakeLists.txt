@@ -15,7 +15,7 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(CommonCompileFlags)
 
 add_library(gsl-lite INTERFACE)
-target_include_directories(gsl-lite INTERFACE 3rd-parties)
+target_include_directories(gsl-lite INTERFACE ../3rd-parties)
 
 add_executable(constexpr src/constexpr.cpp)
 target_compile_features(constexpr PRIVATE cxx_std_20)
