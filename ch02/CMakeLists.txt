@@ -16,7 +16,7 @@ include(CommonCompileFlags)
 find_package(Protobuf REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_search_module(GRPCPP REQUIRED grpc++)
-find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin)
+find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 
 get_filename_component(srv_proto "grpc/service.proto" ABSOLUTE)
 get_filename_component(srv_proto_path "${srv_proto}" PATH)
