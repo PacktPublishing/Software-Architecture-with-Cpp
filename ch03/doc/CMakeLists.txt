@@ -24,7 +24,7 @@ find_package(Sphinx REQUIRED)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/conf.py.in
                ${CMAKE_CURRENT_BINARY_DIR}/conf.py @ONLY)
 add_custom_target(
-  sphinx-doc
+  sphinx-doc ALL
   COMMAND ${SPHINX_EXECUTABLE} -b html -c ${CMAKE_CURRENT_BINARY_DIR}
           ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
