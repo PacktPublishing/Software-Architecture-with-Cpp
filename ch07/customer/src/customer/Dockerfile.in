@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:rolling
 ADD Customer-@PROJECT_VERSION@-Linux.deb .
 RUN apt-get update && apt-get -y --no-install-recommends install ./Customer-@PROJECT_VERSION@-Linux.deb
 RUN apt-get autoremove -y && apt-get clean && rm -r /var/lib/apt/lists/* Customer-@PROJECT_VERSION@-Linux.deb
