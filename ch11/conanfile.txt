@@ -1,0 +1,6 @@
+[requires]
+benchmark/1.5.2
+fmt/7.1.3
+
+[generators]
+CMakeDeps
