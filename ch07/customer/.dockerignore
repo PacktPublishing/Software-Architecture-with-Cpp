@@ -1,0 +1,9 @@
+*
+!cmake
+!conan
+!include
+!src
+!test
+!*.txt
+!LICENSE
+!*.md

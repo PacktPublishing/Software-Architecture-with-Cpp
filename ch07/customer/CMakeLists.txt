@@ -26,3 +26,15 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     add_subdirectory(test)
   endif()
 endif()
+
+# Container creation
+
+find_program(Docker_EXECUTABLE docker)
+if(Docker_EXECUTABLE)
+  add_custom_target(
+    docker
+    COMMENT "Preparing Docker image"
+    COMMAND ${Docker_EXECUTABLE} build ${CMAKE_CURRENT_LIST_DIR} -t
+            customer:${PROJECT_VERSION} -t customer:latest
+    VERBATIM)
+endif()

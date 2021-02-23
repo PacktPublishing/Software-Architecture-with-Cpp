@@ -79,6 +79,8 @@ set(CPACK_PACKAGE_VERSION_PATCH ${PROJECT_VERSION_PATCH})
 set(CPACK_RESOURCE_FILE_LICENSE "${PROJECT_SOURCE_DIR}/LICENSE")
 set(CPACK_RESOURCE_FILE_README "${PROJECT_SOURCE_DIR}/README.md")
 
+set(CPACK_OUTPUT_FILE_PREFIX packages)
+
 list(APPEND CPACK_GENERATOR TGZ ZIP)
 if(UNIX)
   find_program(DPKG_PROGRAM dpkg)
@@ -119,15 +121,7 @@ add_custom_target(
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
   VERBATIM)
 
-# Container creation
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Dockerfile.in
-               ${PROJECT_BINARY_DIR}/Dockerfile @ONLY)
-
-find_program(Docker_EXECUTABLE docker)
-if(NOT Docker_EXECUTABLE)
-  message(FATAL_ERROR "Docker not found")
-endif()
+# Package creation
 
 add_custom_target(
   customer-deb
@@ -136,11 +130,3 @@ add_custom_target(
   WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
   VERBATIM)
 add_dependencies(customer-deb libcustomer)
-
-add_custom_target(
-  docker
-  COMMENT "Preparing Docker image"
-  COMMAND ${Docker_EXECUTABLE} build ${PROJECT_BINARY_DIR} -t
-          customer:${PROJECT_VERSION} -t customer:latest
-  VERBATIM)
-add_dependencies(docker customer-deb)
