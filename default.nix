@@ -16,6 +16,7 @@ mkShell {
     gcc
     libtool
     lsb-release
+    pkg-config
     pre-commit
     python3Packages.setuptools
     python3Packages.pip
