@@ -10,12 +10,14 @@ if(CCACHE_PROGRAM)
   set_property(GLOBAL PROPERTY RULE_LAUNCH_COMPILE "${CCACHE_PROGRAM}")
 endif()
 
+include(${CMAKE_CURRENT_BINARY_DIR}/conanbuildinfo.cmake)
+conan_basic_setup(TARGETS)
+
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 include(CommonCompileFlags)
 
 find_package(Protobuf REQUIRED)
 find_package(PkgConfig REQUIRED)
-pkg_search_module(GRPCPP REQUIRED grpc++)
 find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
 
 get_filename_component(srv_proto "grpc/service.proto" ABSOLUTE)
@@ -39,22 +41,22 @@ include_directories("${CMAKE_CURRENT_BINARY_DIR}")
 
 add_executable(grpc_client grpc/AsyncClient.cpp ${srv_grpc_srcs}
                            ${srv_grpc_hdrs} ${srv_proto_srcs} ${srv_proto_hdrs})
-target_link_libraries(grpc_client ${Protobuf_LIBRARIES} ${GRPCPP_LIBRARIES})
+target_link_libraries(grpc_client CONAN_PKG::grpc ${Protobuf_LIBRARIES}
+                      ${GRPCPP_LIBRARIES})
 
 add_executable(grpc_server grpc/AsyncServer.cpp ${srv_grpc_srcs}
                            ${srv_grpc_hdrs} ${srv_proto_srcs} ${srv_proto_hdrs})
-target_link_libraries(grpc_server ${Protobuf_LIBRARIES} ${GRPCPP_LIBRARIES})
+target_link_libraries(grpc_server CONAN_PKG::grpc ${Protobuf_LIBRARIES}
+                      ${GRPCPP_LIBRARIES})
 
 find_package(Threads REQUIRED)
-find_package(OpenSSL REQUIRED)
-find_package(cpprestsdk REQUIRED)
 
 add_executable(rest_client rest/CppRestSdkReadPage.cpp)
 target_link_libraries(
-  rest_client PRIVATE cpprestsdk::cpprest ${CMAKE_THREAD_LIBS_INIT}
+  rest_client PRIVATE CONAN_PKG::cpprestsdk ${CMAKE_THREAD_LIBS_INIT}
                       ${OPENSSL_LIBRARIES})
 
 add_executable(rest_server rest/CppRestSdkSimpleService.cpp)
 target_link_libraries(
-  rest_server PRIVATE cpprestsdk::cpprest ${CMAKE_THREAD_LIBS_INIT}
+  rest_server PRIVATE CONAN_PKG::cpprestsdk ${CMAKE_THREAD_LIBS_INIT}
                       ${OPENSSL_LIBRARIES})
