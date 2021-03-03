@@ -1,7 +1,7 @@
 { pkgs ? import (
   builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/20.09.tar.gz";
-    sha256 = "1wg61h4gndm3vcprdcg7rc4s1v3jkm5xd7lw8r2f67w502y94gcy";
+    url = "https://github.com/NixOS/nixpkgs/archive/a439e0ef6eb2ab395048b3cf68a46224874245ef.tar.gz";
+    sha256 = "005z8j5bikrlr2rxh0i3znygkdp8y6b9cbshm986n2mrf47zpbri";
   }
 ) {} }:
 
@@ -15,10 +15,16 @@ mkShell {
     cmake
     gcc
     libtool
+    lsb-release
     pre-commit
     python3Packages.setuptools
+    python3Packages.pip
+    python3Packages.virtualenv
   ];
   shellHook = ''
-    pre-commit install
+    pre-commit install -f --hook-type pre-commit
+    virtualenv venv
+    source venv/bin/activate
+    pip install conan==1.34.0
   '';
 }

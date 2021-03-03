@@ -8,18 +8,17 @@ Hands-On Software Architecture with C++ by Packt Publishing
 Install the following software:
 - CMake
 - Conan
-- GCC 9
+- GCC 10
 
-Assuming you're on Linux, configure a default Conan profile and remotes by running:
+Assuming you're on Linux, configure a hosacpp Conan profile and remotes by running:
 
 ```bash
-conan profile new default || true
-conan profile update settings.compiler=gcc default
-conan profile update settings.compiler.libcxx=libstdc++11 default
-conan profile update settings.compiler.version=9 default
-conan profile update settings.arch=x86_64 default
-conan profile update settings.os=Linux default
-conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
+conan profile new hosacpp || true
+conan profile update settings.compiler=gcc hosacpp
+conan profile update settings.compiler.libcxx=libstdc++11 hosacpp
+conan profile update settings.compiler.version=10 hosacpp
+conan profile update settings.arch=x86_64 hosacpp
+conan profile update settings.os=Linux hosacpp
 ```
 
 ### Building
@@ -29,7 +28,7 @@ To build the customer project out of source, first cd to its directory, and then
 ```bash
 mkdir build
 cd build
-conan install .. --build=missing -pr=default
+conan install .. --build=missing -pr=hosacpp
 cmake ..
 cmake --build .
 ```
