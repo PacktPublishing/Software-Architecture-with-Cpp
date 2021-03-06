@@ -6,20 +6,19 @@ Hands-On Software Architecture with C++ by Packt Publishing
 ### Prerequisites
 
 Install the following software:
-- CMake
-- Conan
-- GCC 9
+- CMake 3.15
+- Conan 1.34
+- GCC 10
 
-Assuming you're on Linux, configure a default Conan profile and remotes by running:
+Assuming you're on Linux, configure a hosacpp Conan profile and remotes by running:
 
 ```bash
-conan profile new default || true
-conan profile update settings.compiler=gcc default
-conan profile update settings.compiler.libcxx=libstdc++11 default
-conan profile update settings.compiler.version=9 default
-conan profile update settings.arch=x86_64 default
-conan profile update settings.os=Linux default
-conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
+conan profile new hosacpp || true
+conan profile update settings.compiler=gcc hosacpp
+conan profile update settings.compiler.libcxx=libstdc++11 hosacpp
+conan profile update settings.compiler.version=10 hosacpp
+conan profile update settings.arch=x86_64 hosacpp
+conan profile update settings.os=Linux hosacpp
 conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
 ```
 
@@ -27,13 +26,13 @@ conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloe
 
 The customer and mobile app components must be built separately.
 
-To build each of them out of source, first cd to their directory, and then run:
+To build each of them, first cd to their source directory, and then run:
 
 ```bash
 mkdir build
 cd build
-conan install .. --build=missing -pr=default
-cmake ..
+conan install .. --build=missing -s build_type=Release -pr=hosacpp
+cmake .. -DCMAKE_BUILD_TYPE=Release # build type must match Conan's
 cmake --build .
 ```
 

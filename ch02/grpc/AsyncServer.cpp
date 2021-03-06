@@ -1,6 +1,6 @@
 #include <grpcpp/grpcpp.h>
 #include <string>
-#include "service.grpc.pb.h"
+#include "grpc/service.grpc.pb.h"
 
 using grpc::ServerBuilder;
 using grpc::ServerContext;
