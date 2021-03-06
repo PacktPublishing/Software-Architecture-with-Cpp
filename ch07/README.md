@@ -6,11 +6,11 @@ Hands-On Software Architecture with C++ by Packt Publishing
 ### Prerequisites
 
 Install the following software:
-- CMake
-- Conan
+- CMake 3.15
+- Conan 1.34
 - GCC 10
 
-Assuming you're on Linux, configure a hosacpp Conan profile and remotes by running:
+Assuming you're on Linux, configure a hosacpp Conan profile by running:
 
 ```bash
 conan profile new hosacpp || true
@@ -23,13 +23,13 @@ conan profile update settings.os=Linux hosacpp
 
 ### Building
 
-To build the customer project out of source, first cd to its directory, and then run:
+To build the customer project, first cd to its source directory, and then run:
 
 ```bash
 mkdir build
 cd build
-conan install .. --build=missing -pr=hosacpp
-cmake ..
+conan install .. --build=missing -s build_type=Release -pr=hosacpp
+cmake .. -DCMAKE_BUILD_TYPE=Release # build type must match Conan's
 cmake --build .
 ```
 

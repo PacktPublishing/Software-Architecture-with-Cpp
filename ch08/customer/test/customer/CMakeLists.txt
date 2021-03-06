@@ -1,6 +1,5 @@
 add_executable(catch2tests catch.cpp)
-target_link_libraries(catch2tests PRIVATE domifair::libcustomer
-                                          CONAN_PKG::Catch2)
+target_link_libraries(catch2tests PRIVATE domifair::libcustomer Catch2::Catch2)
 target_compile_options(catch2tests PRIVATE ${BASE_COMPILE_FLAGS})
 catch_discover_tests(catch2tests)
 
@@ -24,7 +23,7 @@ add_test(NAME cppunittests COMMAND cppunittests)
 include(doctest)
 
 add_executable(doctests doctest.cpp)
-target_link_libraries(doctests PRIVATE domifair::libcustomer CONAN_PKG::doctest)
+target_link_libraries(doctests PRIVATE domifair::libcustomer doctest::doctest)
 target_compile_options(doctests PRIVATE ${BASE_COMPILE_FLAGS})
 doctest_discover_tests(doctests)
 

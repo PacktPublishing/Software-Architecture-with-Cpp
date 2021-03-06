@@ -1,4 +1,4 @@
 include(FetchGTest)
 include(GoogleTest)
-include(Catch)
+include(lib/cmake/Catch2/Catch)
 add_subdirectory(merchants)
