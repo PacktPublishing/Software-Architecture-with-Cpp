@@ -1,7 +1,7 @@
 [requires]
 cpprestsdk/2.10.18
 grpc/1.34.1@inexorgame/stable
-openssl/1.1.1
+openssl/1.1.1i
 protobuf/3.13.0
 
 [generators]
