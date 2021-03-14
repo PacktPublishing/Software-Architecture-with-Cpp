@@ -14,14 +14,14 @@ class CustomerConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
-    generators = "cmake"
+    generators = "CMakeDeps"
     keep_imports = True  # useful for repackaging, e.g. of licenses
 
     def package_info(self):
         self.cpp_info.libs = ["customer"]
 
     def requirements(self):
-        self.requires.add('cpprestsdk/2.10.14@bincrafters/stable')
+        self.requires.add('cpprestsdk/2.10.18')
 
     def _configure_cmake(self):
         cmake = CMake(self)

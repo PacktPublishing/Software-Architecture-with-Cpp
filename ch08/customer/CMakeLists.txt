@@ -14,9 +14,9 @@ endif()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}")
 
-find_package(cpprestsdk REQUIRED)
-find_package(Catch2 REQUIRED)
-find_package(doctest REQUIRED)
+find_package(cpprestsdk CONFIG REQUIRED)
+find_package(Catch2 CONFIG REQUIRED)
+find_package(doctest CONFIG REQUIRED)
 
 include(CommonCompileFlags)
 
