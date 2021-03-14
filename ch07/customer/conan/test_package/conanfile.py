@@ -5,7 +5,7 @@ from conans import ConanFile, CMake, tools
 
 class CustomerTestConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    generators = "cmake"
+    generators = "CMakeDeps"
 
     def imports(self):
         self.copy("*.dll", dst="bin", src="bin")
@@ -21,5 +21,4 @@ class CustomerTestConan(ConanFile):
 
     def test(self):
         if not tools.cross_building(self.settings):
-            os.chdir("bin")
             self.run(".%sexample" % os.sep)
