@@ -1,6 +1,6 @@
 include(CMakeFindDependencyMacro)
 
-find_dependency(cpprestsdk 2.10.14)
+find_dependency(cpprestsdk 2.10.18)
 
 if(NOT TARGET domifair::@PROJECT_NAME@)
   include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@Targets.cmake")
