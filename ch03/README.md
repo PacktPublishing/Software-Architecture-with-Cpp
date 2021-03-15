@@ -9,3 +9,24 @@ This is a demo application which shows how to automatically generate
 documentation using Doxygen, Breathe and Sphinx.
 
 This README file should be included in the docs as the main page.
+
+### Prerequisites
+
+Install the following software:
+- CMake
+- A C++ compiler
+- Sphinx
+- ReadTheDocs Sphinx theme
+- Breathe
+- Doxygen
+
+### Building
+
+To build the project, first cd to its directory, and then run:
+
+```bash
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+cmake --build .
+```
