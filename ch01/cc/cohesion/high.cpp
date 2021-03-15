@@ -1,14 +1,10 @@
-class CachingProcessor {
- public:
-  explicit CachingProcessor(ResultNotifier &notifier);
-  Result process(WorkItem work);
-  Results processBatch(WorkBatch batch);
+#include <vector>
 
- private:
-  WorkResultsCache cache_;
-  ResultNotifier notifier_;
-  // ...
-};
+using Result = int;
+using Results = std::vector<int>;
+using WorkItem = int;
+using WorkBatch = std::vector<int>;
+struct Listener;
 
 class WorkResultsCache {
  public:
@@ -27,5 +23,17 @@ class ResultNotifier {
   void notify(const Result &result);
 
  private:
+  // ...
+};
+
+class CachingProcessor {
+ public:
+  explicit CachingProcessor(ResultNotifier &notifier);
+  Result process(WorkItem work);
+  Results processBatch(WorkBatch batch);
+
+ private:
+  WorkResultsCache cache_;
+  ResultNotifier notifier_;
   // ...
 };

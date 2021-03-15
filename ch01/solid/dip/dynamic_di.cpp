@@ -3,6 +3,7 @@
 #include <vector>
 
 class Developer {
+ public:
   virtual ~Developer() = default;
   virtual void develop() = 0;
 };
@@ -27,7 +28,8 @@ class Project {
  public:
   using Developers = std::vector<std::unique_ptr<Developer>>;
 
-  Project(Developers developers) : developers_{std::move(developers)} {}
+  explicit Project(Developers developers)
+      : developers_{std::move(developers)} {}
 
   void deliver() {
     for (auto &developer : developers_) {
