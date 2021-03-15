@@ -3,8 +3,10 @@
 template <typename T, typename U>
 class MyPair {
  public:
-  T &firstMember();
-  U &secondMember();
+  T &firstMember() { return first_; }
+  const T &firstMember() const { return first_; }
+  U &secondMember() { return second_; }
+  const U &secondMember() const { return second_; }
 
  private:
   friend std::ostream &operator<<(std::ostream &stream, const MyPair &mp);
@@ -14,7 +16,7 @@ class MyPair {
   int secretThirdMember_;
 };
 
-std::ostream &operator<<(std::ostream &stream, const MyPair &mp) {
+std::ostream &operator<<(std::ostream &stream, const MyPair<int, int> &mp) {
   stream << mp.first_;
   stream << mp.second_;
   stream << mp.secretThirdMember_;
