@@ -1,7 +1,6 @@
-#include <gsl/gsl-lite.hpp>
-
 #include <algorithm>
 #include <chrono>
+#include <gsl/pointers>
 #include <iomanip>
 #include <iostream>
 #include <optional>
@@ -134,17 +133,6 @@ void order_items_by_date_added(Items &items) {
   // and std::invoke
   sort(items, greater{}, &Item::date_added);
 }
-
-namespace gsl {
-
-template <typename CharType, typename Traits>
-std::basic_ostream<CharType, Traits> &operator<<(
-    std::basic_ostream<CharType, Traits> &os,
-    gsl::not_null<const Item *> const &p) {
-  return os << *p;
-}
-
-}  // namespace gsl
 
 void render_item_gallery([[maybe_unused]] const Items &items) {
   copy(items,

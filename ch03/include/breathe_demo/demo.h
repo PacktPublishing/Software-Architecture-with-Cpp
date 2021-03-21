@@ -1,6 +1,7 @@
 #pragma once
-// the @file annotation is needed for Doxygen to document the free functions in
-// this file
+
+// the @file annotation is needed for Doxygen to document the free
+// functions in this file
 /**
  * @file
  * @brief The main entry points of our demo

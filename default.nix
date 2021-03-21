@@ -13,6 +13,7 @@ mkShell {
     automake
     clang
     cmake
+    doxygen
     gcc
     libtool
     lsb-release
@@ -26,6 +27,6 @@ mkShell {
     pre-commit install -f --hook-type pre-commit
     virtualenv venv
     source venv/bin/activate
-    pip install conan==1.34.0
+    pip install conan==1.34.1 sphinx sphinx-rtd-theme breathe m2r2
   '';
 }

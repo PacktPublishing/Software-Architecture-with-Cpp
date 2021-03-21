@@ -1,6 +1,6 @@
-#include "customer/customer.h"
-
 #include <gtest/gtest.h>
+
+#include "customer/customer.h"
 
 TEST(basic_responses, given_name_when_prepare_responses_then_greets_friendly) {
   auto name = "Bob";

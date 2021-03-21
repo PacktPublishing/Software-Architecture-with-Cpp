@@ -1,4 +1,4 @@
-extensions = [ "breathe", "m2r" ]
+extensions = [ "breathe", "m2r2" ]
 breathe_projects = { "BreatheDemo": "@CMAKE_CURRENT_BINARY_DIR@/xml" }
 breathe_default_project = "BreatheDemo"
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "merchants/reviews.h"
-
 #include <optional>
 #include <unordered_map>
+
+#include "merchants/reviews.h"
 
 class fake_customer_review_store : public i_customer_review_store {
  public:

@@ -1,7 +1,6 @@
-#include <gsl/gsl-lite.hpp>
-
 #include <algorithm>
 #include <chrono>
+#include <gsl/pointers>
 #include <iomanip>
 #include <iostream>
 #include <optional>
@@ -133,17 +132,6 @@ void order_items_by_date_added(
     sortable_range<greater, decltype(&Item::date_added)> auto &items) {
   sort(items, greater{}, &Item::date_added);
 }
-
-namespace gsl {
-
-template <typename CharType, typename Traits>
-std::basic_ostream<CharType, Traits> &operator<<(
-    std::basic_ostream<CharType, Traits> &os,
-    gsl::not_null<const Item *> const &p) {
-  return os << *p;
-}
-
-}  // namespace gsl
 
 template <input_range Container>
 requires std::is_same_v<typename Container::value_type,

@@ -1,15 +1,13 @@
-#include "merchants/reviews.h"
-
 #include "fake_customer_review_store.h"
+#include "merchants/reviews.h"
 
 // order is important
 #define CATCH_CONFIG_MAIN
+#include <merchants/visited_merchant_history.h>
+
 #include <catch2/catch.hpp>
 #include <catch2/trompeloeil.hpp>
-
 #include <memory>
-
-#include <merchants/visited_merchant_history.h>
 
 using trompeloeil::_;
 

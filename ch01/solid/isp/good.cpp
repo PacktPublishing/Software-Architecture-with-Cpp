@@ -13,12 +13,12 @@ class ICutter {
 
 class Blender : public IBlender {
  public:
-  void blend() override;
+  void blend() override {}
 };
 
 class AnotherFoodProcessor : public IBlender, public ICutter {
  public:
-  void blend() override;
-  void slice() override;
-  void dice() override;
+  void blend() override {}
+  void slice() override {}
+  void dice() override {}
 };

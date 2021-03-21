@@ -1,10 +1,8 @@
-#include "merchants/reviews.h"
-
 #include <gmock/gmock.h>
-
 #include <merchants/visited_merchant_history.h>
 
 #include "fake_customer_review_store.h"
+#include "merchants/reviews.h"
 
 namespace {
 

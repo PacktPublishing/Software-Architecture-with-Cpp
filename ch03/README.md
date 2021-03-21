@@ -19,6 +19,7 @@ Install the following software:
 - ReadTheDocs Sphinx theme
 - Breathe
 - Doxygen
+- m2r2
 
 ### Building
 

@@ -3,7 +3,7 @@ struct Duration {
 };
 
 void example() {
-  Duration d;
+  auto d = Duration{};
   d.millis_ = 100;
 
   auto timeout = 1;     // second
