@@ -22,6 +22,9 @@ class CustomerConan(ConanFile):
 
     def requirements(self):
         self.requires.add('cpprestsdk/2.10.18')
+        self.requires.add('Catch2/2.11.1@catchorg/stable')
+        self.requires.add('doctest/2.3.7')
+
 
     def _configure_cmake(self):
         cmake = CMake(self)

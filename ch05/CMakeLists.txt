@@ -51,20 +51,24 @@ target_link_libraries(concepts PRIVATE Microsoft.GSL::GSL)
 target_compile_features(concepts PRIVATE cxx_std_20)
 target_compile_options(concepts PRIVATE ${BASE_COMPILE_FLAGS})
 
-# this is workaround until CMake supports Modules properly
-function(add_module_executable name) # then sources in specific order
-  add_custom_target(
-    ${name} ALL
-    COMMAND
-      ${CMAKE_CXX_COMPILER} -std=c++2a -fmodules-ts
-      ${CMAKE_CXX_FLAGS} # TODO: append build-type specific compile flags and
-                         # ${BASE_COMPILE_FLAGS}
-      ${ARGN} -o ${CMAKE_CURRENT_BINARY_DIR}/${name} -isystem
-      ${PROJECT_SOURCE_DIR}/3rd-parties/ # TODO: proper support for
-                                         # target_link_libraries
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
-endfunction()
+option(ENABLE_MODULES "Compile the modules example" OFF)
 
-add_module_executable(
-  5_modules src/5_modules/merchant.cpp src/5_modules/customer.cpp
-  src/5_modules/store.cpp src/5_modules/main.cpp)
+if(ENABLE_MODULES)
+  # this is workaround until CMake supports Modules properly
+  function(add_module_executable name) # then sources in specific order
+    add_custom_target(
+      ${name} ALL
+      COMMAND
+        ${CMAKE_CXX_COMPILER} -std=c++2a -fmodules-ts
+        ${CMAKE_CXX_FLAGS} # TODO: append build-type specific compile flags and
+                           # ${BASE_COMPILE_FLAGS}
+        ${ARGN} -o ${CMAKE_CURRENT_BINARY_DIR}/${name} -isystem
+        ${PROJECT_SOURCE_DIR}/3rd-parties/ # TODO: proper support for
+                                           # target_link_libraries
+      WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+  endfunction()
+
+  add_module_executable(
+    5_modules src/5_modules/merchant.cpp src/5_modules/customer.cpp
+    src/5_modules/store.cpp src/5_modules/main.cpp)
+endif()

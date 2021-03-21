@@ -13,6 +13,8 @@ mkShell {
     automake
     clang
     cmake
+    docker
+    docker-compose
     doxygen
     gcc
     libtool

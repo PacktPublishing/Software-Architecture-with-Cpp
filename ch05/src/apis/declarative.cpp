@@ -1,13 +1,12 @@
-#pragma once
-
 #include <algorithm>
 #include <iostream>
+#include <numeric>
 #include <optional>
 #include <ranges>
+#include <string>
 #include <vector>
 
-#include "inline.h"
-#include "optional.h"
+using namespace std::literals;
 
 std::optional<std::size_t> imperative_aka_bad() {
   auto temperatures = std::vector<double>{-3., 2., 0., 8., -10., -7.};
@@ -21,20 +20,19 @@ std::optional<std::size_t> imperative_aka_bad() {
   return std::nullopt;
 }
 
-auto legacy_declarative() {
+std::optional<std::size_t> legacy_declarative() {
   auto temperatures = std::vector<double>{-3., 2., 0., 8., -10., -7.};
   // ...
-  auto it =
-      std::ranges::adjacent_find(temperatures, [](double first, double second) {
-      return std::abs(first - second) > 5);
-      });
+  auto it = std::ranges::adjacent_find(
+      temperatures,
+      [](double first, double second) { return std::abs(first - second) > 5; });
   if (it != std::end(temperatures)) {
     return std::optional{std::distance(std::begin(temperatures), it)};
   }
   return std::nullopt;
 }
 
-auto modern_declarative() {
+void modern_declarative() {
   using namespace std::ranges;
 
   auto is_even = [](auto x) { return x % 2 == 0; };

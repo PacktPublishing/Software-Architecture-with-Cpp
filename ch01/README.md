@@ -20,7 +20,7 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ```
 
-If GCC is not your default compiler, you can tell CMake to use it with the `CMAKE_CXX_COMPILER` flag.
+If GCC 10 is not your default compiler, you can tell CMake to use it with the `CMAKE_CXX_COMPILER` flag.
 Replace the first invocation above with:
 
 ```bash

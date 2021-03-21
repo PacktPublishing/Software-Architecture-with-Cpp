@@ -1,5 +1,5 @@
 #include <chrono>
-#include <gsl/gsl-lite.hpp>
+#include <gsl/gsl_util>
 #include <iostream>
 #include <ostream>
 
