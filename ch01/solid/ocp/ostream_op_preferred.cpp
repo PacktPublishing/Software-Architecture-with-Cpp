@@ -1,3 +1,4 @@
+#include <iostream>
 #include <ostream>
 
 template <typename T, typename U>
@@ -15,7 +16,12 @@ class MyPair {
 };
 
 std::ostream &operator<<(std::ostream &stream, const MyPair<int, int> &mp) {
-  stream << mp.firstMember();
+  stream << mp.firstMember() << ", ";
   stream << mp.secondMember();
   return stream;
+}
+
+int main() {
+  auto mp = MyPair<int, int>{};
+  std::cout << mp << '\n';
 }

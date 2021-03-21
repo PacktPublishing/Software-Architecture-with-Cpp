@@ -8,7 +8,7 @@ class FrontEndDeveloper {
   void develop() { developFrontEnd(); }
 
  private:
-  void developFrontEnd();
+  void developFrontEnd() {}
 };
 
 class BackEndDeveloper {
@@ -16,7 +16,7 @@ class BackEndDeveloper {
   void develop() { developBackEnd(); }
 
  private:
-  void developBackEnd();
+  void developBackEnd() {}
 };
 
 template <typename... Devs>

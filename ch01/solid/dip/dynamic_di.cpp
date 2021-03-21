@@ -13,7 +13,7 @@ class FrontEndDeveloper : public Developer {
   void develop() override { developFrontEnd(); }
 
  private:
-  void developFrontEnd();
+  void developFrontEnd() {}
 };
 
 class BackEndDeveloper : public Developer {
@@ -21,7 +21,7 @@ class BackEndDeveloper : public Developer {
   void develop() override { developBackEnd(); }
 
  private:
-  void developBackEnd();
+  void developBackEnd() {}
 };
 
 class Project {
@@ -40,3 +40,11 @@ class Project {
  private:
   Developers developers_;
 };
+
+int main() {
+  auto developers = Project::Developers{};
+  developers.emplace_back(std::make_unique<FrontEndDeveloper>());
+  developers.emplace_back(std::make_unique<BackEndDeveloper>());
+  auto project = Project{std::move(developers)};
+  project.deliver();
+}

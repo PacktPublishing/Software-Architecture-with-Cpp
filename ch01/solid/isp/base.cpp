@@ -6,5 +6,5 @@ class IFoodProcessor {
 
 class Blender : public IFoodProcessor {
  public:
-  void blend() override;
+  void blend() override {}
 };

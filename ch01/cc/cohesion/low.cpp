@@ -8,8 +8,8 @@ struct Listener;
 
 class CachingProcessor {
  public:
-  Result process(WorkItem work) {}
-  Results processBatch(WorkBatch batch) {}
+  Result process(WorkItem work) { return {}; }
+  Results processBatch(WorkBatch batch) { return {}; }
   void addListener(const Listener &listener) {}
   void removeListener(const Listener &listener) {}
 

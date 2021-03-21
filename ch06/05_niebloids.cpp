@@ -1,7 +1,6 @@
-#include <gsl/gsl-lite.hpp>
-
 #include <algorithm>
 #include <deque>
+#include <gsl/pointers>
 #include <iostream>
 #include <ostream>
 #include <ranges>

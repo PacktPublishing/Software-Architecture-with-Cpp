@@ -1,9 +1,9 @@
 #pragma once
 
-#include "reviews.h"
-
 #include <memory>
 #include <vector>
+
+#include "reviews.h"
 
 // represents a merchant item on a list of visited merchants
 class i_visited_merchant {

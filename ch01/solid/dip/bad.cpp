@@ -1,11 +1,11 @@
 class FrontEndDeveloper {
  public:
-  void developFrontEnd();
+  void developFrontEnd() {}
 };
 
 class BackEndDeveloper {
  public:
-  void developBackEnd();
+  void developBackEnd() {}
 };
 
 class Project {
@@ -19,3 +19,8 @@ class Project {
   FrontEndDeveloper fed_;
   BackEndDeveloper bed_;
 };
+
+int main() {
+  auto project = Project{};
+  project.deliver();
+}

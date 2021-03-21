@@ -1,8 +1,8 @@
-#include "customer/customer.h"
-
 #include <cpprest/details/basic_types.h>
 #include <cpprest/http_listener.h>
 #include <cpprest/uri.h>
+
+#include "customer/customer.h"
 
 using namespace ::web;
 using namespace ::web::http;

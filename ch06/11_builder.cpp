@@ -113,11 +113,4 @@ int main() {
           .marked_as_featured()
           .build();
   std::cout << fetched_item << '\n';
-
-  auto burdel = ItemBuilder{"xd"}
-                    .with_description("XDDDDDDDDDDDDDDDDDDDDDDDDDDD")
-                    .marked_as_featured();
-  //  auto not_working = burdel.build();
-  auto last_item = std::move(burdel).build();
-  std::cout << last_item << '\n';
 }

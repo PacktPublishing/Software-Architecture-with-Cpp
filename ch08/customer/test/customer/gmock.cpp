@@ -1,6 +1,6 @@
-#include "customer/customer.h"
-
 #include <gmock/gmock.h>
+
+#include "customer/customer.h"
 
 using namespace ::testing;
 using namespace ::web;

@@ -1,14 +1,13 @@
+#include <fmt/format.h>
+#include <fmt/ostream.h>
+
+#include <chrono>
 #include <cppcoro/async_mutex.hpp>
 #include <cppcoro/schedule_on.hpp>
 #include <cppcoro/static_thread_pool.hpp>
 #include <cppcoro/sync_wait.hpp>
 #include <cppcoro/task.hpp>
 #include <cppcoro/when_all.hpp>
-
-#include <fmt/format.h>
-#include <fmt/ostream.h>
-
-#include <chrono>
 #include <iostream>
 #include <string>
 #include <thread>

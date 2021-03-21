@@ -10,14 +10,14 @@ class IFoodProcessor {
 
 class AnotherFoodProcessor : public IFoodProcessor {
  public:
-  void blend() override;
-  void slice() override;
-  void dice() override;
+  void blend() override {}
+  void slice() override {}
+  void dice() override {}
 };
 
 class Blender : public IFoodProcessor {
  public:
-  void blend() override;
+  void blend() override {}
   void slice() override { throw std::logic_error{"I can't do that"}; }
   void dice() override { throw std::logic_error{"Oh no!"}; }
 };
