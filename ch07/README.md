@@ -66,7 +66,3 @@ you'll get a .tar.gz file, a .zip file, and a .deb package.
 ### Building a Conan package
 
 In the build directory, run `cmake --build . --target conan`.
-
-### Building a Docker container
-
-In the build directory, run `cmake --build . --target docker`.
