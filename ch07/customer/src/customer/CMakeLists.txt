@@ -118,29 +118,3 @@ add_custom_target(
   COMMAND conan create . customer/testing -s build_type=$<CONFIG> -pr hosacpp
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
   VERBATIM)
-
-# Container creation
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Dockerfile.in
-               ${PROJECT_BINARY_DIR}/Dockerfile @ONLY)
-
-find_program(Docker_EXECUTABLE docker)
-if(NOT Docker_EXECUTABLE)
-  message(FATAL_ERROR "Docker not found")
-endif()
-
-add_custom_target(
-  customer-deb
-  COMMENT "Creating Customer DEB package"
-  COMMAND ${CMAKE_CPACK_COMMAND} -G DEB
-  WORKING_DIRECTORY ${PROJECT_BINARY_DIR}
-  VERBATIM)
-add_dependencies(customer-deb libcustomer)
-
-add_custom_target(
-  docker
-  COMMENT "Preparing Docker image"
-  COMMAND ${Docker_EXECUTABLE} build ${PROJECT_BINARY_DIR} -t
-          customer:${PROJECT_VERSION} -t customer:latest
-  VERBATIM)
-add_dependencies(docker customer-deb)
