@@ -5,7 +5,7 @@ cache:
     - build
 
 default:
-  image: conanio/gcc9
+  image: conanio/gcc10
 
 stages:
   - prerequisites
@@ -19,15 +19,14 @@ before_script:
 prerequisites:
   stage: prerequisites
   script:
+    - pip install conan==1.34.1
     - conan profile new default || true
     - conan profile update settings.compiler=gcc default
     - conan profile update settings.compiler.libcxx=libstdc++11 default
-    - conan profile update settings.compiler.version=9 default
+    - conan profile update settings.compiler.version=10 default
     - conan profile update settings.arch=x86_64 default
-    - conan profile update settings.arch_build=x86_64 default
+    - conan profile update settings.build_type=Release default
     - conan profile update settings.os=Linux default
-    - conan profile update settings.os_build=Linux default
-    - conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan || true
     - conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
 
 build:
@@ -37,7 +36,7 @@ build:
     - mkdir -p build
     - cd build
     - conan install ../ch08/customer --build=missing
-    - cmake -DBUILD_TESTING=1 ../ch08/customer
+    - cmake -DBUILD_TESTING=1 -DCMAKE_BUILD_TYPE=Release ../ch08/customer
     - cmake --build .
 
 test:
