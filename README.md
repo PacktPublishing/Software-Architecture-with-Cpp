@@ -4,7 +4,7 @@ Hands-On Software Architecture with C++ by Packt Publishing
 ## Table of Contents
 
 Chapter 1: [Importance of Software Architecture and Principles of Great
-Design](ch01)
+Design](Chapter01)
 
 Chapter 2: [Architectural Styles](ch02)
 
