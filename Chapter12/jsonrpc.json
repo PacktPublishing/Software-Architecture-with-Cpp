@@ -1,0 +1,10 @@
+{
+  "jsonrpc": "2.0",
+  "method": "FindMerchants",
+  "params": {
+    "lat": "54.350989",
+    "long": "18.6548168",
+    "distance": 200
+  },
+  "id": 1
+}

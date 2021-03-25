@@ -1,0 +1,18 @@
+POST /FindMerchants HTTP/1.1
+Host: www.domifair.org
+Content-Type: application/soap+xml; charset=utf-8
+Content-Length: 345
+SOAPAction: "http://www.w3.org/2003/05/soap-envelope"
+
+<?xml version="1.0"?>
+<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope">
+  <soap:Header>
+  </soap:Header>
+  <soap:Body xmlns:m="https://www.domifair.org">
+    <m:FindMerchants>
+      <m:Lat>54.350989</m:Lat>
+      <m:Long>18.6548168</m:Long>
+      <m:Distance>200</m:Distance>
+    </m:FindMerchants>
+  </soap:Body>
+</soap:Envelope>
