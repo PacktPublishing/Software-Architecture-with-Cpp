@@ -1,0 +1,28 @@
+#%RAML 1.0
+
+title: Items API overview
+version: 2.0.0
+
+annotationTypes:
+  oas-summary:
+    type: string
+    allowedTargets: Method
+
+/item:
+  get:
+    displayName: getItem
+    queryParameters:
+      itemId:
+        type: string
+    responses:
+      '200':
+        body:
+          application/json:
+            example: |
+              {
+                "itemId": 8,
+                "name", "Kürtőskalács",
+                "locationId": 5
+                }
+        description: 200 response
+    (oas-summary): get item details
