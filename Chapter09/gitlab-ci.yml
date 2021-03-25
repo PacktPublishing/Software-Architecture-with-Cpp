@@ -1,0 +1,55 @@
+cache:
+  key: all
+  paths:
+    - .conan
+    - build
+
+default:
+  image: conanio/gcc10
+
+stages:
+  - prerequisites
+  - build
+  - test
+  - package
+
+before_script:
+  - export CONAN_USER_HOME="$CI_PROJECT_DIR"
+
+prerequisites:
+  stage: prerequisites
+  script:
+    - pip install conan==1.34.1
+    - conan profile new default || true
+    - conan profile update settings.compiler=gcc default
+    - conan profile update settings.compiler.libcxx=libstdc++11 default
+    - conan profile update settings.compiler.version=10 default
+    - conan profile update settings.arch=x86_64 default
+    - conan profile update settings.build_type=Release default
+    - conan profile update settings.os=Linux default
+    - conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
+
+build:
+  stage: build
+  script:
+    - sudo apt-get update && sudo apt-get install -y docker.io
+    - mkdir -p build
+    - cd build
+    - conan install ../ch08/customer --build=missing
+    - cmake -DBUILD_TESTING=1 -DCMAKE_BUILD_TYPE=Release ../ch08/customer
+    - cmake --build .
+
+test:
+  stage: test
+  script:
+    - cd build
+    - ctest .
+
+package:
+  stage: package
+  script:
+    - cd build
+    - cpack .
+  artifacts:
+    paths:
+      - build/Customer*.deb
