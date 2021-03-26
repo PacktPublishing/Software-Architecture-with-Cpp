@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  web:
+    image: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - merchant
+  merchant:
+    image: hosacpp/merchant:v2.0.3
+    deploy:
+      replicas: 3
+    ports:
+      - "8000"

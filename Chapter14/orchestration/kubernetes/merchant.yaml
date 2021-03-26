@@ -1,0 +1,80 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dominican-front
+  name: dominican-front
+spec:
+  selector:
+    matchLabels:
+      app: dominican-front
+  template:
+    metadata:
+      labels:
+        app: dominican-front
+    spec:
+      containers:
+        - name: webserver
+          imagePullPolicy: Always
+          image: nginx
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dominican-front
+  name: dominican-front
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: dominican-front
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dominican-merchant
+  name: merchant
+spec:
+  selector:
+    matchLabels:
+      app: dominican-merchant
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: dominican-merchant
+    spec:
+      containers:
+        - name: merchant
+          imagePullPolicy: Always
+          image: hosacpp/merchant:v2.0.3
+          ports:
+            - name: http
+              containerPort: 8000
+              protocol: TCP
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dominican-merchant
+  name: merchant
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 8000
+  selector:
+    app: dominican-merchant
+    type: ClusterIP

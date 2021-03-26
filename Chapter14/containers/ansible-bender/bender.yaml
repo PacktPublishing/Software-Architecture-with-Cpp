@@ -1,0 +1,16 @@
+---
+- name: Container image with ansible-bender
+  hosts: all
+  vars:
+    ansible_bender:
+      base_image: python:3-buster
+
+      target_image:
+        name: hosacpp-gcc
+        cmd: /usr/bin/gcc
+  tasks:
+  - name: Install Apt packages
+    apt:
+      pkg:
+        - build-essential
+        - gcc
