@@ -1,0 +1,68 @@
+version: '2'
+
+services:
+    crossdock:
+        image: crossdock/crossdock
+        links:
+            - test_driver
+            - go
+            - cpp-udp
+            - cpp-http
+        environment:
+            - WAIT_FOR=test_driver,go,cpp-udp,cpp-http
+            - WAIT_FOR_TIMEOUT=60s
+
+            - CALL_TIMEOUT=60s
+
+            - AXIS_CLIENT=go
+            - AXIS_S1NAME=go,cpp-udp
+            - AXIS_SAMPLED=true,false
+            - AXIS_S2NAME=go,cpp-udp
+            - AXIS_S2TRANSPORT=http
+            - AXIS_S3NAME=go,cpp-udp
+            - AXIS_S3TRANSPORT=http
+
+            - BEHAVIOR_TRACE=client,s1name,sampled,s2name,s2transport,s3name,s3transport
+
+            - AXIS_TESTDRIVER=test_driver
+            - AXIS_SERVICES=cpp-udp,cpp-http
+
+            - BEHAVIOR_ENDTOEND=testdriver,services
+
+            - REPORT=compact
+
+    go:
+        image: jaegertracing/xdock-go
+        ports:
+            - "8080-8082"
+
+    cpp-udp:
+        depends_on:
+            - test_driver
+        build:
+          context: $PWD
+          dockerfile: crossdock/Dockerfile
+        ports:
+            - "8080-8082"
+        environment:
+            - SENDER=udp
+
+    cpp-http:
+        depends_on:
+            - test_driver
+        build:
+            context: $PWD
+            dockerfile: crossdock/Dockerfile
+        ports:
+            - "8080-8082"
+        environment:
+            - SENDER=http
+
+    test_driver:
+        image: jaegertracing/test-driver
+        depends_on:
+            - jaeger-query
+            - jaeger-collector
+            - jaeger-agent
+        ports:
+            - "8080"

@@ -12,10 +12,12 @@ repos:
       - id: end-of-file-fixer
         exclude: 3rd-parties/
       - id: mixed-line-ending
+        exclude: 3rd-parties/
       # Prevent direct commits to the following branches
       - id: no-commit-to-branch
         args: [--branch, master]
       - id: trailing-whitespace
+        exclude: 3rd-parties/
   - repo: https://github.com/pocc/pre-commit-hooks
     rev: v1.1.0
     hooks:

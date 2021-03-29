@@ -1,0 +1,20 @@
+@PACKAGE_INIT@
+
+set(package_deps @package_deps@)
+foreach(dep IN LISTS package_deps)
+    if(dep STREQUAL "OpenSSL" OR dep STREQUAL "Threads")
+        find_package(${dep} REQUIRED)
+    elseif(dep STREQUAL "OpenTracing" OR
+           dep STREQUAL "yaml-cpp")
+        find_package(${dep} CONFIG REQUIRED)
+    else()
+        find_package(${dep} @hunter_config@ REQUIRED)
+    endif()
+endforeach()
+
+set(boost_components @boost_components@)
+find_package(Boost CONFIG REQUIRED ${boost_components})
+
+check_required_components("@PROJECT_NAME@")
+
+include("${CMAKE_CURRENT_LIST_DIR}/@TARGETS_EXPORT_NAME@.cmake")

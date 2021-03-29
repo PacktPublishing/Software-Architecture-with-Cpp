@@ -1,0 +1,25 @@
+version: '{build}'
+
+image: Visual Studio 2017
+
+init:
+  - cmd: git config --global core.autocrlf true
+
+platform:
+  - x64
+
+configuration:
+  - Debug
+
+before_build:
+  - cmake -H. -Bbuild -A%PLATFORM% -DBUILD_TESTING=ON
+
+build:
+  project: build\jaegertracing.sln
+  parallel: true
+  verbosity: normal
+
+test_script:
+- ps: |
+    cd build
+    ctest -V -C $env:configuration --timeout 600 --output-on-failure 
