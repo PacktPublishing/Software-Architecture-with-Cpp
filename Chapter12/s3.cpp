@@ -34,9 +34,14 @@ bool create_user_bucket(const std::string &username) {
 int main() {
   std::string username = "random_42";
 
+  Aws::SDKOptions options;
+  Aws::InitAPI(options);
+
   auto success = create_user_bucket(username);
 
   if (success) {
     std::cout << "The bucket for " << username << " is ready";
   }
+
+  ShutdownAPI(options);
 }
