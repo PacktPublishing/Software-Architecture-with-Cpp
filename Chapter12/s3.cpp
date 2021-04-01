@@ -1,6 +1,7 @@
 #include <aws/core/Aws.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/CreateBucketRequest.h>
+#include <string>
 
 #include <spdlog/spdlog.h>
 
@@ -10,7 +11,7 @@ const Aws::S3::Model::BucketLocationConstraint region =
 bool create_user_bucket(const std::string &username) {
   Aws::S3::Model::CreateBucketRequest request;
 
-  Aws::String bucket_name("userbucket_" + username);
+  Aws::String bucket_name(("userbucket_" + username).c_str());
   request.SetBucket(bucket_name);
 
   Aws::S3::Model::CreateBucketConfiguration bucket_config;
@@ -28,4 +29,14 @@ bool create_user_bucket(const std::string &username) {
   }
 
   return true;
+}
+
+int main() {
+  std::string username = "random_42";
+
+  auto success = create_user_bucket(username);
+
+  if (success) {
+    std::cout << "The bucket for " << username << " is ready";
+  }
 }
