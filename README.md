@@ -79,7 +79,7 @@ With the following software and hardware list you can run all code files present
 | 2 | C++20 | Windows, Mac OS X, and Linux (Any) |
 | 3 | GCC 10 | Windows, Mac OS X, and Linux (Any) |
 
-We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt- cdn.com/downloads/9781838554590_ColorImages.pdf).
+We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781838554590_ColorImages.pdf).
 
 ### Related products
 * C++ High Performance - Second Edition [[Packt]](https://www.packtpub.com/product/c-high-performance-second-edition/9781839216541?utm_source=github&utm_medium=repository&utm_campaign=9781839216541) [[Amazon]](https://www.amazon.com/dp/1839216549)
