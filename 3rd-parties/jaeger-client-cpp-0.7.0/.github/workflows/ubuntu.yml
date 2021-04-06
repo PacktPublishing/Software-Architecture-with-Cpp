@@ -1,0 +1,41 @@
+name: Ubuntu
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CTEST_OUTPUT_ON_FAILURE: 1
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+
+    - name: Set up cache
+      uses: actions/cache@v2
+      with:
+        path: ~\.hunter
+        key: ${{ runner.os }}-hunter-${{ hashFiles('**/') }}
+        restore-keys: |
+          ${{ runner.os }}-hunter-
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Configure
+      run: cmake -Bbuild
+
+    - name: Build
+      run: cmake --build build -j4
+
+    - name: Test
+      run: |
+        cd build
+        ctest -V --timeout 600

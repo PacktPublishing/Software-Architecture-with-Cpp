@@ -3,3 +3,5 @@
 gcm.cache/
 .vscode/
 CMakeLists.txt.user
+venv
+.env

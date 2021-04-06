@@ -1,0 +1,10 @@
+[requires]
+aws-sdk-cpp/1.7.212@kmaragon/stable
+spdlog/1.8.2
+
+[generators]
+CMakeDeps
+
+[options]
+aws-sdk-cpp:shared=True
+aws-sdk-cpp:build_s3=True

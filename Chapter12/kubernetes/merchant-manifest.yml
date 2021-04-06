@@ -1,0 +1,14 @@
+image: hosacpp/merchant:v2.0.3
+manifests:
+  - image: hosacpp/merchant:v2.0.3-amd64
+    platform:
+      architecture: amd64
+      os: linux
+  - image: hosacpp/merchant:v2.0.3-arm32
+    platform:
+      architecture: arm
+      os: linux
+  - image: hosacpp/merchant:v2.0.3-arm64
+    platform:
+      architecture: arm64
+      os: linux

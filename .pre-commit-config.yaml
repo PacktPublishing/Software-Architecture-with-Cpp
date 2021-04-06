@@ -3,18 +3,26 @@ repos:
     rev: v2.5.0
     hooks:
       - id: check-added-large-files
+        exclude: 3rd-parties/
       - id: check-byte-order-marker
+        exclude: 3rd-parties/
       - id: check-case-conflict
+        exclude: 3rd-parties/
       - id: check-merge-conflict
+        exclude: 3rd-parties/
       - id: check-symlinks
+        exclude: 3rd-parties/
       - id: check-yaml
+        exclude: kubernetes
       - id: end-of-file-fixer
         exclude: 3rd-parties/
       - id: mixed-line-ending
+        exclude: 3rd-parties/
       # Prevent direct commits to the following branches
       - id: no-commit-to-branch
         args: [--branch, master]
       - id: trailing-whitespace
+        exclude: 3rd-parties/
   - repo: https://github.com/pocc/pre-commit-hooks
     rev: v1.1.0
     hooks:

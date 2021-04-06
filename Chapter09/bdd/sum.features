@@ -1,0 +1,9 @@
+# language: en
+Feature: Summing
+In order to see how much we earn,
+Sum must be able to add two numbers together
+
+Scenario: Regular numbers
+  Given I have entered 3 and 2 as parameters
+  When I add them
+  Then the result should be 5

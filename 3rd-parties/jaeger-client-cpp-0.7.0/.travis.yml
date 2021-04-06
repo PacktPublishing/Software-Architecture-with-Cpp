@@ -1,0 +1,88 @@
+language: cpp
+sudo: true
+dist: trusty
+addons:
+  apt:
+    packages: &1
+    - lcov
+matrix:
+  include:
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - *1
+        - g++-4.9
+    env:
+    - MATRIX_EVAL="CC=gcc-4.9 && CXX=g++-4.9 && CMAKE_OPTIONS='-DCMAKE_BUILD_TYPE=Debug
+      -DBUILD_SHARED_LIBS=ON -DJAEGERTRACING_COVERAGE=ON'"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - *1
+        - g++-5
+    env:
+    - MATRIX_EVAL="CC=gcc-5 && CXX=g++-5 && CMAKE_OPTIONS='-DCMAKE_BUILD_TYPE=Debug
+      -DBUILD_SHARED_LIBS=ON -DJAEGERTRACING_COVERAGE=ON'"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - *1
+        - g++-6
+    env:
+    - MATRIX_EVAL="CC=gcc-6 && CXX=g++-6 && CMAKE_OPTIONS='-DCMAKE_BUILD_TYPE=Debug
+      -DBUILD_SHARED_LIBS=ON -DJAEGERTRACING_COVERAGE=ON'"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - *1
+        - g++-7
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && CMAKE_OPTIONS='-DCMAKE_BUILD_TYPE=Debug
+      -DBUILD_SHARED_LIBS=ON -DJAEGERTRACING_COVERAGE=ON'"
+  - os: linux
+    addons:
+      apt:
+        sources:
+        - ubuntu-toolchain-r-test
+        packages:
+        - *1
+        - g++-7
+    env:
+    - MATRIX_EVAL="CC=gcc-7 && CXX=g++-7 && CMAKE_OPTIONS='-DCMAKE_BUILD_TYPE=Release
+      -DJAEGERTRACING_PLUGIN=ON -DBUILD_TESTING=ON -DHUNTER_CONFIGURATION_TYPES=Release'"
+before_install:
+- eval "${MATRIX_EVAL}"
+- mkdir cmake-download && cd cmake-download && curl -O https://cmake.org/files/v3.10/cmake-3.10.0-rc5-Linux-x86_64.sh
+  && bash cmake-3.10.0-rc5-Linux-x86_64.sh --skip-license && cd ..
+script:
+- CMAKE_OPTIONS="${CMAKE_OPTIONS}" ./scripts/build.sh
+after_success:
+- CMAKE_OPTIONS="${CMAKE_OPTIONS}" ./scripts/upload-coverage.sh
+cache:
+  directories:
+  - "$HOME/.hunter/_Base/Cache"
+env:
+  global:
+  - LANG="en_US.UTF-8"
+  - PATH="$TRAVIS_BUILD_DIR/cmake-download/bin:$PATH"
+deploy:
+  provider: releases
+  api_key:
+    secure: Q2ZlNb0QHRfS+uZ4q9EEsWjv7s1EFqahF8aDLpoO8brSaLtImcMM5G9MHukxjh57NJnM0S9FOU6hJyAnSt8hOjmQH+7oXwvt1Uoqh5gmPXpxhmIcK753JxXeeKID6nxBImTk8JjBRV164k7Oyj401t8WqKYZB+s5PuZq4ND854Ak/kFFsZbMunsy0RX8LxrYTuxc3YBwWfa1oFXJIqxWN/J1YV6hSdCNtWuk2re796leql3vkNEogHUCHvTB/lmM4egcsF21TkpOuRrCww/DYTx4eLCjvwJKtGuLq8FKC8uMLMG5b2JgllpfFbEq5o6imqioKUjTuoS0TE0KzM4WQFgYo7itykgZRD3pvivSK8mJePjTjuDQukQ6i1PkT9wgxdkagPH/mD+JBzx+cAzy3jPgfxWFl29Yj1xsKpbUmeSjxWac87b8d3lEBfBNJ83QkfkC80ZrJufhy30RP47PTHLUNf/udiO722T6w6Zu6wEKFSjfoRqPa0Uj2Src8tonKt7Me9UDoHAJ+go0nIz27xc4haPFgg5NgxSSXDn9fAEiLlj48tQkI6bUl1U+HH1baWHoTrckUi7OpJZYU9zB4QLwhia7OhrVvNWtTIbyVF4+8OIw4uaMsEV3jsR0okREUKSH/yPGiouFvoiggVa3OIGDN+CLQ/7Pocw8msBSQ0U=
+  file: build/libjaegertracing_plugin.so
+  on:
+    repo: jaegertracing/jaeger-client-cpp
+    tags: true
+  skip_cleanup: true

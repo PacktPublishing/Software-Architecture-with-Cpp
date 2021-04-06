@@ -1,0 +1,15 @@
+cmake_minimum_required(VERSION 2.8.2)
+
+project(@PROJECT@-package-test NONE)
+
+include(ExternalProject)
+ExternalProject_Add(@PROJECT@
+  SOURCE_DIR "@CMAKE_SOURCE_DIR@" # we're testing 'this' project, so use the ROOT
+  BINARY_DIR "@REDISCPP_EXTERNAL_DIR@/@PROJECT@-build"
+  TEST_COMMAND ""
+  BUILD_ALWAYS 0
+  CMAKE_CACHE_ARGS
+    -DREDISCPP_HEADER_ONLY:BOOL=@REDISCPP_TEST_HEADER_ONLY@
+    -DCMAKE_INSTALL_PREFIX:PATH=@REDISCPP_EXTERNAL_DIR@/@PROJECT@-install
+    -DCMAKE_BUILD_TYPE:STRING=@CMAKE_BUILD_TYPE@
+)

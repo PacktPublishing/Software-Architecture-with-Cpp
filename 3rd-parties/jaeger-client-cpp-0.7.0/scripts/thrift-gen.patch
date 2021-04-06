@@ -1,0 +1,115 @@
+diff --git a/src/jaegertracing/thrift-gen/tracetest_types.cpp b/src/jaegertracing/thrift-gen/tracetest_types.cpp
+index cb7199e..ceb7a20 100644
+--- a/src/jaegertracing/thrift-gen/tracetest_types.cpp
++++ b/src/jaegertracing/thrift-gen/tracetest_types.cpp
+@@ -60,7 +60,7 @@ void Downstream::__set_transport(const Transport::type val) {
+   this->transport = val;
+ }
+ 
+-void Downstream::__set_downstream(const Downstream& val) {
++void Downstream::__set_downstream(const std::shared_ptr<Downstream>& val) {
+   this->downstream = val;
+ __isset.downstream = true;
+ }
+@@ -141,7 +141,7 @@ uint32_t Downstream::read(::apache::thrift::protocol::TProtocol* iprot) {
+         break;
+       case 6:
+         if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+-          xfer += this->downstream.read(iprot);
++          xfer += this->downstream->read(iprot);
+           this->__isset.downstream = true;
+         } else {
+           xfer += iprot->skip(ftype);
+@@ -196,7 +196,7 @@ uint32_t Downstream::write(::apache::thrift::protocol::TProtocol* oprot) const {
+ 
+   if (this->__isset.downstream) {
+     xfer += oprot->writeFieldBegin("downstream", ::apache::thrift::protocol::T_STRUCT, 6);
+-    xfer += this->downstream.write(oprot);
++    xfer += this->downstream->write(oprot);
+     xfer += oprot->writeFieldEnd();
+   }
+   xfer += oprot->writeFieldStop();
+@@ -672,7 +672,7 @@ void TraceResponse::__set_span(const ObservedSpan& val) {
+ __isset.span = true;
+ }
+ 
+-void TraceResponse::__set_downstream(const TraceResponse& val) {
++void TraceResponse::__set_downstream(const std::shared_ptr<TraceResponse>& val) {
+   this->downstream = val;
+ __isset.downstream = true;
+ }
+@@ -719,7 +719,7 @@ uint32_t TraceResponse::read(::apache::thrift::protocol::TProtocol* iprot) {
+         break;
+       case 2:
+         if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+-          xfer += this->downstream.read(iprot);
++          xfer += this->downstream->read(iprot);
+           this->__isset.downstream = true;
+         } else {
+           xfer += iprot->skip(ftype);
+@@ -759,7 +759,7 @@ uint32_t TraceResponse::write(::apache::thrift::protocol::TProtocol* oprot) cons
+   }
+   if (this->__isset.downstream) {
+     xfer += oprot->writeFieldBegin("downstream", ::apache::thrift::protocol::T_STRUCT, 2);
+-    xfer += this->downstream.write(oprot);
++    xfer += this->downstream->write(oprot);
+     xfer += oprot->writeFieldEnd();
+   }
+   xfer += oprot->writeFieldBegin("notImplementedError", ::apache::thrift::protocol::T_STRING, 3);
+diff --git a/src/jaegertracing/thrift-gen/tracetest_types.h b/src/jaegertracing/thrift-gen/tracetest_types.h
+index 5a0e6c9..a44f3a3 100644
+--- a/src/jaegertracing/thrift-gen/tracetest_types.h
++++ b/src/jaegertracing/thrift-gen/tracetest_types.h
+@@ -61,7 +61,7 @@ class Downstream : public virtual ::apache::thrift::TBase {
+   std::string host;
+   std::string port;
+   Transport::type transport;
+-  Downstream downstream;
++  std::shared_ptr<Downstream> downstream;
+ 
+   _Downstream__isset __isset;
+ 
+@@ -75,7 +75,7 @@ class Downstream : public virtual ::apache::thrift::TBase {
+ 
+   void __set_transport(const Transport::type val);
+ 
+-  void __set_downstream(const Downstream& val);
++  void __set_downstream(const std::shared_ptr<Downstream>& val);
+ 
+   bool operator == (const Downstream & rhs) const
+   {
+@@ -91,7 +91,7 @@ class Downstream : public virtual ::apache::thrift::TBase {
+       return false;
+     if (__isset.downstream != rhs.__isset.downstream)
+       return false;
+-    else if (__isset.downstream && !(downstream == rhs.downstream))
++    else if (__isset.downstream && !(*downstream == *rhs.downstream))
+       return false;
+     return true;
+   }
+@@ -273,14 +273,14 @@ class TraceResponse : public virtual ::apache::thrift::TBase {
+ 
+   virtual ~TraceResponse() throw();
+   ObservedSpan span;
+-  TraceResponse downstream;
++  std::shared_ptr<TraceResponse> downstream;
+   std::string notImplementedError;
+ 
+   _TraceResponse__isset __isset;
+ 
+   void __set_span(const ObservedSpan& val);
+ 
+-  void __set_downstream(const TraceResponse& val);
++  void __set_downstream(const std::shared_ptr<TraceResponse>& val);
+ 
+   void __set_notImplementedError(const std::string& val);
+ 
+@@ -292,7 +292,7 @@ class TraceResponse : public virtual ::apache::thrift::TBase {
+       return false;
+     if (__isset.downstream != rhs.__isset.downstream)
+       return false;
+-    else if (__isset.downstream && !(downstream == rhs.downstream))
++    else if (__isset.downstream && !(*downstream == *rhs.downstream))
+       return false;
+     if (!(notImplementedError == rhs.notImplementedError))
+       return false;
