@@ -6,7 +6,7 @@
       base_image: python:3-buster
 
       target_image:
-        name: hosacpp-gcc
+        name: dominican-compiler
         cmd: /usr/bin/gcc
   tasks:
   - name: Install Apt packages

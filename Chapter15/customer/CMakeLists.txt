@@ -32,10 +32,3 @@ find_package(Boost CONFIG REQUIRED EXACT 1.75.0)
 find_package(cpprestsdk CONFIG REQUIRED)
 
 add_subdirectory(src/customer)
-
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  include(CTest)
-  if(BUILD_TESTING)
-    add_subdirectory(test)
-  endif()
-endif()

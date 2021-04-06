@@ -2,7 +2,7 @@
   "variables": {
     "do_api_token": "{{env `DIGITALOCEAN_ACCESS_TOKEN`}}",
     "region": "fra1",
-    "packages": "customer"
+    "package": "customer",
     "version": "1.0.3"
   },
   "builders": [
@@ -11,20 +11,20 @@
       "api_token": "{{user `do_api_token`}}",
       "image": "ubuntu-20-04-x64",
       "region": "{{user `region`}}",
-      "size": "512mb",
+      "size": "s-1vcpu-1gb",
       "ssh_username": "root"
     }
   ],
-  provisioners: [
+  "provisioners": [
     {
       "type": "file",
       "source": "./{{user `package`}}-{{user `version`}}.deb",
-      "destination": "/home/ubuntu/"
+      "destination": "/tmp/{{user `package`}}-{{user `version`}}.deb"
     },
     {
       "type": "shell",
       "inline":[
-        "dpkg -i /home/ubuntu/{{user `package`}}-{{user `version`}}.deb"
+        "dpkg -i /tmp/{{user `package`}}-{{user `version`}}.deb"
       ]
     }
 

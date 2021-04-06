@@ -3,10 +3,15 @@ repos:
     rev: v2.5.0
     hooks:
       - id: check-added-large-files
+        exclude: 3rd-parties/
       - id: check-byte-order-marker
+        exclude: 3rd-parties/
       - id: check-case-conflict
+        exclude: 3rd-parties/
       - id: check-merge-conflict
+        exclude: 3rd-parties/
       - id: check-symlinks
+        exclude: 3rd-parties/
       - id: check-yaml
         exclude: kubernetes
       - id: end-of-file-fixer

@@ -1,4 +1,5 @@
 #include <aws/core/Aws.h>
+#include <aws/core/utils/UUID.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/CreateBucketRequest.h>
 #include <string>
@@ -11,8 +12,11 @@ const Aws::S3::Model::BucketLocationConstraint region =
 bool create_user_bucket(const std::string &username) {
   Aws::S3::Model::CreateBucketRequest request;
 
-  Aws::String bucket_name(("userbucket_" + username).c_str());
-  request.SetBucket(bucket_name);
+  Aws::String unique_prefix = Aws::Utils::UUID::RandomUUID();
+
+  Aws::String bucket_name(("userbucket-" + username).c_str());
+  Aws::String full_name = unique_prefix + bucket_name;
+  request.SetBucket(Aws::Utils::StringUtils::ToLower(full_name.c_str()));
 
   Aws::S3::Model::CreateBucketConfiguration bucket_config;
   bucket_config.SetLocationConstraint(region);
@@ -32,7 +36,7 @@ bool create_user_bucket(const std::string &username) {
 }
 
 int main() {
-  std::string username = "random_42";
+  std::string username = "random-42";
 
   Aws::SDKOptions options;
   Aws::InitAPI(options);
@@ -40,7 +44,7 @@ int main() {
   auto success = create_user_bucket(username);
 
   if (success) {
-    std::cout << "The bucket for " << username << " is ready";
+    std::cout << "The bucket for " << username << " is ready" << std::endl;
   }
 
   ShutdownAPI(options);
