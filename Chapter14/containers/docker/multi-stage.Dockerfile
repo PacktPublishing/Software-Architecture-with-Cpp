@@ -1,6 +1,6 @@
 FROM ubuntu:bionic AS builder
 
-RUN apt-get update && apt-get -y install build-essentials gcc cmake
+RUN apt-get update && apt-get -y install build-essential gcc cmake
 
 ADD . /usr/src
 
