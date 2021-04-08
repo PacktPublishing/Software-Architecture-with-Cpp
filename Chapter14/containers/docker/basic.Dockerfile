@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM ubuntu:latest
 
 RUN apt-get update && apt-get -y install build-essential gcc
 
