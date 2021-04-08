@@ -1,6 +1,6 @@
-FROM ubuntu:bionic AS builder
+FROM ubuntu:latest AS builder
 
-RUN apt-get update && apt-get -y install build-essentials gcc cmake
+RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get -y install build-essential gcc cmake libcpprest-dev
 
 ADD . /usr/src
 
@@ -11,7 +11,7 @@ RUN mkdir build && \
     cmake .. -DCMAKE_BUILD_TYPE=Release && \
     cmake --build .
 
-FROM ubuntu:bionic
+FROM ubuntu:latest
 
 COPY --from=builder /usr/src/build/bin/customer /bin/customer
 
