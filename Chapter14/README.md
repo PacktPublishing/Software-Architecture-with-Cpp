@@ -18,6 +18,9 @@ containers.
 ```
 cd containers/docker
 docker build -t basic -f basic.Dockerfile .
+docker build -t compile -f compile.Dockerfile .
+docker build -t multi-stage -f multi-stage.Dockerfile .
+docker build -t scratch -f scratch.Dockerfile .
 ```
 
 After you build the container image, you should be able to list it with `docker
@@ -29,9 +32,6 @@ the working directory.
 
 #### Buildah
 
-**Warning**: Buildah is experimental and may be unstable or require additional
-setup.
-
 Run the `./buildah.sh` script to build an image using the shell script. You can
 see the built image by running `podman images`. It's named
 `localhost/dominican-gcc`.
@@ -42,9 +42,6 @@ cd containers/buildah
 ```
 
 #### Ansible Bender
-
-**Warning**: Ansible Bender is experimental and may be unstable or require additional
-setup.
 
 To build an image with ansible-bender, run
 
