@@ -101,12 +101,13 @@ working directory. You may either build it using the instructions from the other
 chapters or you may substitute it with another valid deb package, eg.:
 
 ```
-wget http://mirrors.kernel.org/ubuntu/pool/main/t/time/time_1.7-25.1build1_amd64.deb -O customer-1.0.3.deb
+wget http://mirrors.kernel.org/ubuntu/pool/main/t/time/time_1.7-25.1build1_amd64.deb -O packer/customer-1.0.3.deb
 ```
 
 To build the image with Packer run
 
 ```
+cd packer
 packer build packer-digitalocean.json
 ```
 
