@@ -30,6 +30,14 @@ The `compile` and `multi-stage` examples require a copy of C++ sources present
 in the current directory. The `scratch` example requires binary to be present in
 the working directory.
 
+To build a static binary, you may use:
+
+```
+conan install .. --build=missing -s build_type=Release -pr=hosacpp
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-static" -DBUILD_SHARED_LIBS=OFF -DCMAKE_FIND_LIBRARY_SUFFIXES=".a"
+cmake --build .
+```
+
 #### Buildah
 
 Run the `./buildah.sh` script to build an image using the shell script. You can
