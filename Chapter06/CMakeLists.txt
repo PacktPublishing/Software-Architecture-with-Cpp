@@ -8,7 +8,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_BINARY_DIR}")
 
-find_package(ms-gsl CONFIG REQUIRED)
+find_package(Microsoft.GSL CONFIG REQUIRED)
 
 add_executable(01_raii_guards 01_raii_guards.cpp)
 target_compile_features(01_raii_guards PRIVATE cxx_std_11)

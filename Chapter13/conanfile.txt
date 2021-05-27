@@ -1,6 +1,6 @@
 [requires]
 boost/1.75.0
-grpc/1.34.1@inexorgame/stable
+grpc/1.37.1
 protobuf/3.13.0
 
 [generators]

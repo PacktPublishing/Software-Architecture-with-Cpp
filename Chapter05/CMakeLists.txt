@@ -17,7 +17,7 @@ endif()
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake")
 list(APPEND CMAKE_PREFIX_PATH "${PROJECT_BINARY_DIR}")
 
-find_package(ms-gsl CONFIG REQUIRED)
+find_package(Microsoft.GSL CONFIG REQUIRED)
 
 include(CommonCompileFlags)
 
