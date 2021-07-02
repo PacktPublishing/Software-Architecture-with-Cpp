@@ -57,6 +57,10 @@ If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1838
 <a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
 alt="https://www.packtpub.com/" border="5" /></a>
 
+## Errata
+
+* Page 196: The sentence "This is one example of a more general optimization named Small Object Optimization (SSO)" must be read as "This is one example of a more general optimization named Small Object Optimization (SOO)".
+
 ## Instructions and Navigations
 All of the code is organized into folders. For example, Chapter02.
 
