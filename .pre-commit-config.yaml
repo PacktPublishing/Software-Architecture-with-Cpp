@@ -2,8 +2,6 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.4.0
     hooks:
-      - id: check-added-large-files
-        exclude: 3rd-parties/
       - id: check-byte-order-marker
         exclude: 3rd-parties/
       - id: check-case-conflict

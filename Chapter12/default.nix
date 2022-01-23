@@ -1,38 +1,42 @@
 { pkgs ? import (
   builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/a439e0ef6eb2ab395048b3cf68a46224874245ef.tar.gz";
-    sha256 = "005z8j5bikrlr2rxh0i3znygkdp8y6b9cbshm986n2mrf47zpbri";
+    url = "https://github.com/NixOS/nixpkgs/archive/21.11-pre.tar.gz";
+    sha256 = "0ww19c7n4fj9zn770aw8zaqld742bi9sa9s8hqb3vrgp3mpihil0";
   }
 ) {} }:
 
-with pkgs;
-
-mkShell {
-  buildInputs = [
-    ansible
-    autoconf
-    automake
-    awscli
-    clang
-    cmake
-    docker
-    docker-compose
-    doxygen
-    gcc
-    libtool
-    lsb-release
-    packer
-    pkg-config
-    pre-commit
-    python3Packages.setuptools
-    python3Packages.pip
-    python3Packages.virtualenv
-    terraform
-  ];
-  shellHook = ''
-    pre-commit install -f --hook-type pre-commit
-    virtualenv venv
-    source venv/bin/activate
-    pip install conan==1.34.1 sphinx sphinx-rtd-theme breathe m2r2
-  '';
+let
+  additionalInputs = if pkgs.system == "x86_64-linux" then pkgs.lsb-release else "";
+in
+with pkgs; {
+  gcc11Env = stdenvNoCC.mkDerivation {
+    name = "gcc11-environment";
+    buildInputs = [
+      ansible
+      autoconf
+      automake
+      awscli
+      clang
+      cmake
+      conan
+      docker
+      docker-compose
+      doxygen
+      gcc
+      libtool
+      lsb-release
+      packer
+      pkg-config
+      pre-commit
+      python3Packages.setuptools
+      python3Packages.pip
+      python3Packages.virtualenv
+      terraform
+    ];
+    shellHook = ''
+      virtualenv venv
+      source venv/bin/activate
+      pip install sphinx sphinx-rtd-theme breathe m2r2
+    '';
+  };
 }
