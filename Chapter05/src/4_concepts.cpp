@@ -29,7 +29,7 @@ struct Item {
   bool featured{};
 };
 
-std::ostream &operator<<(std::ostream &os, const Item &item) {
+std::ostream &operator<<(std::ostream &os, const Item* item) {
   auto stringify_optional = [](const auto &optional) {
     using optional_value_type =
         typename std::remove_cvref_t<decltype(optional)>::value_type;
@@ -40,14 +40,14 @@ std::ostream &operator<<(std::ostream &os, const Item &item) {
     }
   };
 
-  auto time_added = system_clock::to_time_t(item.date_added);
+  auto time_added = system_clock::to_time_t(item->date_added);
 
-  os << "name: " << item.name
-     << ", photo_url: " << stringify_optional(item.photo_url)
-     << ", description: " << item.description
-     << ", price: " << std::setprecision(2) << stringify_optional(item.price)
+  os << "name: " << item->name
+     << ", photo_url: " << stringify_optional(item->photo_url)
+     << ", description: " << item->description
+     << ", price: " << std::setprecision(2) << stringify_optional(item->price)
      << ", date_added: " << std::put_time(std::localtime(&time_added), "%c %Z")
-     << ", featured: " << item.featured;
+     << ", featured: " << item->featured;
   return os;
 }
 
