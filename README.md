@@ -100,3 +100,7 @@ He has worked in the IT industry both in full-time positions and as a freelancer
 In his spare time, Adrian used to promote music bands together with Piotr and has learned how to fly a glider. Currently, he likes riding his bicycle, going to music events, and browsing memes.
 
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781838554590">https://packt.link/free-ebook/9781838554590 </a> </p>
