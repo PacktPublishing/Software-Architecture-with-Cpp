@@ -30,8 +30,8 @@ class verbose_resource : public std::pmr::memory_resource {
     upstream_resource_->deallocate(p, bytes, alignment);
   }
 
-  [[nodiscard]] bool do_is_equal(const memory_resource &other) const
-      noexcept override {
+  [[nodiscard]] bool do_is_equal(
+      const memory_resource &other) const noexcept override {
     return this == &other;
   }
 

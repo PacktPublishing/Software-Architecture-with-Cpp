@@ -44,7 +44,7 @@ This is the code repository for [Software Architecture with C++](https://www.pac
 **Design modern systems using effective architecture concepts, design patterns, and techniques with C++20**
 
 ## What is this book about?
-Software architecture refers to the high-level design of complex applications. It is evolving just like the languages we use. Modern C++ allows developers to write high-performance apps in a high-level language without sacrificing readability and maintainability. If you're working with modern C++, this practical guide will help you put your knowledge to work and design distributed, large-scale apps. You'll start by getting up to speed with architectural concepts, including established patterns and rising trends. The book will then explain what software architecture is and help you explore its components. Next, you'll discover the design concepts involved in application architecture and the patterns in software development, before going on to learn how to build, package, integrate, and deploy your components. In the concluding chapters, you'll explore different architectural qualities, such as maintainability, reusability, testability, performance, scalability, and security. Finally, you will get an overview of distributed systems, such as service-oriented architecture, microservices, and cloud-native, and understand how to apply them in application development. 
+Software architecture refers to the high-level design of complex applications. It is evolving just like the languages we use. Modern C++ allows developers to write high-performance apps in a high-level language without sacrificing readability and maintainability. If you're working with modern C++, this practical guide will help you put your knowledge to work and design distributed, large-scale apps. You'll start by getting up to speed with architectural concepts, including established patterns and rising trends. The book will then explain what software architecture is and help you explore its components. Next, you'll discover the design concepts involved in application architecture and the patterns in software development, before going on to learn how to build, package, integrate, and deploy your components. In the concluding chapters, you'll explore different architectural qualities, such as maintainability, reusability, testability, performance, scalability, and security. Finally, you will get an overview of distributed systems, such as service-oriented architecture, microservices, and cloud-native, and understand how to apply them in application development.
 
 This book covers the following exciting features:
 Understand how to apply the principles of software architecture
@@ -57,7 +57,7 @@ Discover various techniques to solve common problems in software design and deve
 
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1838554599) today!
 
-<a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png" 
+<a href="https://www.packtpub.com/?utm_source=github&utm_medium=banner&utm_campaign=GitHubBanner"><img src="https://raw.githubusercontent.com/PacktPublishing/GitHub/master/GitHub.png"
 alt="https://www.packtpub.com/" border="5" /></a>
 
 ## Errata

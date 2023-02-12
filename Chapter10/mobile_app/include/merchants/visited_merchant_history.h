@@ -1,8 +1,7 @@
 #pragma once
 
-#include "reviews.h"
-
 #include "msemstdvector.h"
+#include "reviews.h"
 
 // represents a merchant item on a list of visited merchants
 class i_visited_merchant {
