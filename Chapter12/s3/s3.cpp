@@ -2,9 +2,9 @@
 #include <aws/core/utils/UUID.h>
 #include <aws/s3/S3Client.h>
 #include <aws/s3/model/CreateBucketRequest.h>
-#include <string>
-
 #include <spdlog/spdlog.h>
+
+#include <string>
 
 const Aws::S3::Model::BucketLocationConstraint region =
     Aws::S3::Model::BucketLocationConstraint::eu_central_1;

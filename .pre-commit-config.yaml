@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.5.0
+    rev: v4.4.0
     hooks:
       - id: check-added-large-files
         exclude: 3rd-parties/
@@ -24,7 +24,7 @@ repos:
       - id: trailing-whitespace
         exclude: 3rd-parties/
   - repo: https://github.com/pocc/pre-commit-hooks
-    rev: v1.1.0
+    rev: v1.3.5
     hooks:
       - id: clang-format
         args: [--style=Google, -i]
