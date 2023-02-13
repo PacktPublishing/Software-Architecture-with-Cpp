@@ -72,7 +72,7 @@ range auto get_all_featured_items(const Stores &stores) -> Items {
 
 template <typename Range, typename Comp, typename Proj>
 concept sortable_range =
-    random_access_range<Range> &&std::sortable<iterator_t<Range>, Comp, Proj>;
+    random_access_range<Range> && std::sortable<iterator_t<Range>, Comp, Proj>;
 
 void order_items_by_date_added(
     sortable_range<greater, decltype(&Item::date_added)> auto &items) {
@@ -80,8 +80,8 @@ void order_items_by_date_added(
 }
 
 template <input_range Container>
-requires std::is_same_v<typename Container::value_type, const Item *> void
-render_item_gallery(const Container &items) {
+requires std::is_same_v<typename Container::value_type, const Item *>
+void render_item_gallery(const Container &items) {
   auto printable_items =
       items |
       views::transform(
