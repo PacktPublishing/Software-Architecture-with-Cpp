@@ -29,7 +29,7 @@ include(FetchContent)
 FetchContent_Declare(
   cppcoro
   GIT_REPOSITORY https://github.com/andreasbuhr/cppcoro
-  GIT_TAG master
+  GIT_TAG main
   GIT_SHALLOW ON)
 FetchContent_MakeAvailable(cppcoro)
 

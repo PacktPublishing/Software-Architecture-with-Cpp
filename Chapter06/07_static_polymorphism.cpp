@@ -34,9 +34,8 @@ using GlamorousVariant = std::variant<PinkHeels, GoldenWatch>;
 class CommonGlamorousItem {
  public:
   template <typename T>
-  requires std::is_base_of_v<GlamorousItem<T>, T> explicit CommonGlamorousItem(
-      T&& item)
-      : item_{std::forward<T>(item)} {}
+  requires std::is_base_of_v<GlamorousItem<T>, T>
+  explicit CommonGlamorousItem(T&& item) : item_{std::forward<T>(item)} {}
 
   void appear_in_full_glory() {
     std::visit(
@@ -51,19 +50,19 @@ class CommonGlamorousItem {
 int main() {
   {
     auto glamorous_items = PreciousItems<PinkHeels, GoldenWatch>{};
-    std::apply([]<typename... T>(GlamorousItem<T>... items) {
-      (items.appear_in_full_glory(), ...);
-    },
-               glamorous_items);
+    std::apply(
+        []<typename... T>(GlamorousItem<T>... items) {
+          (items.appear_in_full_glory(), ...);
+        },
+        glamorous_items);
   }
   std::cout << "---\n";
   {
     auto glamorous_items = std::array{GlamorousVariant{PinkHeels{}},
                                       GlamorousVariant{GoldenWatch{}}};
     for (auto& elem : glamorous_items) {
-      std::visit([]<typename T>(GlamorousItem<T> item) {
-        item.appear_in_full_glory();
-      },
+      std::visit([]<typename T>(
+                     GlamorousItem<T> item) { item.appear_in_full_glory(); },
                  elem);
     }
   }

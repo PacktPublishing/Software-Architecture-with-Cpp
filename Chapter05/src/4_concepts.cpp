@@ -126,7 +126,7 @@ range auto get_all_featured_items(const Stores &stores) {
 
 template <typename Range, typename Comp, typename Proj>
 concept sortable_range =
-    random_access_range<Range> &&std::sortable<iterator_t<Range>, Comp, Proj>;
+    random_access_range<Range> && std::sortable<iterator_t<Range>, Comp, Proj>;
 
 void order_items_by_date_added(
     sortable_range<greater, decltype(&Item::date_added)> auto &items) {
@@ -135,8 +135,8 @@ void order_items_by_date_added(
 
 template <input_range Container>
 requires std::is_same_v<typename Container::value_type,
-                        gsl::not_null<const Item *>> void
-render_item_gallery(const Container &items) {
+                        gsl::not_null<const Item *>>
+void render_item_gallery(const Container &items) {
   copy(items,
        std::ostream_iterator<typename Container::value_type>(std::cout, "\n"));
 }
