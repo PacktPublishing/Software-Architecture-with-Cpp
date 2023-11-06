@@ -47,13 +47,13 @@ This is the code repository for [Software Architecture with C++](https://www.pac
 Software architecture refers to the high-level design of complex applications. It is evolving just like the languages we use. Modern C++ allows developers to write high-performance apps in a high-level language without sacrificing readability and maintainability. If you're working with modern C++, this practical guide will help you put your knowledge to work and design distributed, large-scale apps. You'll start by getting up to speed with architectural concepts, including established patterns and rising trends. The book will then explain what software architecture is and help you explore its components. Next, you'll discover the design concepts involved in application architecture and the patterns in software development, before going on to learn how to build, package, integrate, and deploy your components. In the concluding chapters, you'll explore different architectural qualities, such as maintainability, reusability, testability, performance, scalability, and security. Finally, you will get an overview of distributed systems, such as service-oriented architecture, microservices, and cloud-native, and understand how to apply them in application development.
 
 This book covers the following exciting features:
-Understand how to apply the principles of software architecture
-Apply design patterns and best practices to meet your architectural goals
-Write elegant, safe, and performant code using the latest C++ features
-Build applications that are easy to maintain and deploy
-Explore the different architectural approaches and learn to apply them as per your requirement
-Simplify development and operations using application containers
-Discover various techniques to solve common problems in software design and development
+* Understand how to apply the principles of software architecture
+* Apply design patterns and best practices to meet your architectural goals
+* Write elegant, safe, and performant code using the latest C++ features
+* Build applications that are easy to maintain and deploy
+* Explore the different architectural approaches and learn to apply them as per your requirement
+* Simplify development and operations using application containers
+* Discover various techniques to solve common problems in software design and development
 
 If you feel this book is for you, get your [copy](https://www.amazon.com/dp/1838554599) today!
 
@@ -79,12 +79,16 @@ The code will look like the following:
 This software architecture C++ programming book is for experienced C++ developers who are looking to become software architects or are interested in developing enterprise-grade applications.
 
 With the following software and hardware list you can run all code files present in the book (Chapter 1-15).
+
 ### Software and Hardware List
+
+You need at least one of the following compilers:
+
 | No. | Software required | OS required |
-| -------- | ------------------------------------ | ----------------------------------- |
-| 1 | Microsoft Visual C++ | Windows, Mac OS X, and Linux (Any) |
-| 2 | C++20 | Windows, Mac OS X, and Linux (Any) |
-| 3 | GCC 10 | Windows, Mac OS X, and Linux (Any) |
+| --- | ----------------- | ----------- |
+|  1  | Microsoft Visual C++ 16.8 | Windows |
+|  2  | Clang 8 / Apple Clang 10 | Windows, Mac OS X, and Linux (Any) |
+|  3  | GCC 11 | Windows, Mac OS X, and Linux (Any) |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781838554590_ColorImages.pdf).
 
@@ -93,14 +97,14 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
 
 * Modern C++ Programming Cookbook - Second Edition [[Packt]](https://www.packtpub.com/product/modern-c-programming-cookbook-second-edition/9781800208988?utm_source=github&utm_medium=repository&utm_campaign=9781800208988) [[Amazon]](https://www.amazon.com/dp/B08GM9KKMR)
 
-## Get to Know the Author
+## Get to Know the Authors
 **Adrian Ostrowski**
-Adrian Ostrowski is a modern C++ enthusiast interested in the development of both the C++ language itself and the high-quality code written in it. A lifelong learner with over a decade of experience in the IT industry and more than 8 years of experience with C++ specifically, he's always eager to share his knowledge. His past projects range from parallel computing, through fiber networking, to working on a commodity exchange's trading system. Currently, he's one of the architects of Intel and Habana's integration with machine learning frameworks.
+is a modern C++ enthusiast interested in the development of both the C++ language itself and the high-quality code written in it. A lifelong learner with over a decade of experience in the IT industry and more than 8 years of experience with C++ specifically, he's always eager to share his knowledge. His past projects range from parallel computing, through fiber networking, to working on a commodity exchange's trading system. Currently, he's one of the architects of Intel and Habana's integration with machine learning frameworks.
+In his spare time, Adrian used to promote music bands together with Piotr and has learned how to fly a glider. Currently, he likes riding his bicycle, going to music events, and browsing memes.
 
 **Piotr Gaczkowski**
-Piotr Gaczkowski has more than 10 years of experience in programming and practicing DevOps and uses his skills to improve people's lives. He likes building simple solutions to human problems, organizing cultural events, and teaching fellow professionals. Piotr is keen on automating boring activities and using his experience to share knowledge by conducting courses and writing articles about personal growth and remote work.
+has more than 10 years of experience in programming and practicing DevOps and uses his skills to improve people's lives. He likes building simple solutions to human problems, organizing cultural events, and teaching fellow professionals. Piotr is keen on automating boring activities and using his experience to share knowledge by conducting courses and writing articles about personal growth and remote work.
 He has worked in the IT industry both in full-time positions and as a freelancer, but his true passion is music. When not making his skills useful at work, you can find him building communities.
-In his spare time, Adrian used to promote music bands together with Piotr and has learned how to fly a glider. Currently, he likes riding his bicycle, going to music events, and browsing memes.
 
 
 ### Download a free PDF
