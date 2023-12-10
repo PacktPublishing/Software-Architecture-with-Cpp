@@ -57,7 +57,7 @@ spec:
       containers:
         - name: merchant
           imagePullPolicy: Always
-          image: hosacpp/merchant:v2.0.3
+          image: sacpp/merchant:v2.0.3
           ports:
             - name: http
               containerPort: 8000

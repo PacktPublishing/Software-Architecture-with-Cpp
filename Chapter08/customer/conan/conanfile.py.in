@@ -8,7 +8,7 @@ class CustomerConan(ConanFile):
     license = "MIT"
     author = "Authors"
     homepage = "https://example.com"
-    url = "https://github.com/PacktPublishing/Hands-On-Software-Architecture-with-Cpp/"
+    url = "https://github.com/PacktPublishing/Software-Architecture-with-Cpp/"
     description = "Library and app for the Customer microservice"
     topics = ("Customer", "domifair")
     settings = "os", "compiler", "build_type", "arch"
