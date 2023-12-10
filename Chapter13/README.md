@@ -6,9 +6,9 @@ Hands-On Software Architecture with C++ by Packt Publishing
 ### Prerequisites
 
 Install the following software:
-- CMake 3.15
-- Conan 1.34.1
-- GCC 10
+- CMake 3.27.9
+- Conan 1.62.0
+- GCC 13
 
 Assuming you're on Linux or using WSL, configure a hosacpp Conan profile and remotes by running:
 

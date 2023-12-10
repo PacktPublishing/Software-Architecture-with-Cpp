@@ -1,7 +1,7 @@
 [requires]
-Catch2/2.11.0@catchorg/stable
-trompeloeil/v37@rollbear/stable
-ms-gsl/3.1.0
+catch2/2.13.10
+trompeloeil/46
+ms-gsl/4.0.0
 
 [generators]
 CMakeDeps

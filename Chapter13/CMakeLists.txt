@@ -26,12 +26,10 @@ find_package(grpc REQUIRED)
 find_package(protobuf REQUIRED)
 find_package(Threads REQUIRED)
 
-include(protobuf-generate)
-find_program(GRPC_CPP_PLUGIN grpc_cpp_plugin REQUIRED)
-
 add_library(grpc_service grpc/service.proto)
-target_link_libraries(grpc_service PUBLIC protobuf::libprotobuf gRPC::gRPC)
+target_link_libraries(grpc_service PUBLIC protobuf::libprotobuf gRPC::grpc++)
 
+include(protobuf-generate)
 protobuf_generate(TARGET grpc_service LANGUAGE cpp)
 protobuf_generate(
   TARGET
@@ -42,7 +40,7 @@ protobuf_generate(
   .grpc.pb.h
   .grpc.pb.cc
   PLUGIN
-  "protoc-gen-grpc=${GRPC_CPP_PLUGIN}")
+  "protoc-gen-grpc=\$<TARGET_FILE:gRPC::grpc_cpp_plugin>")
 
 target_include_directories(grpc_service PUBLIC "${CMAKE_CURRENT_BINARY_DIR}")
 

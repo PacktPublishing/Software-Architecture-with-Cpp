@@ -2,6 +2,7 @@
 
 #include <gsl/gsl>
 #include <ranges>
+#include <vector>
 
 template <typename T>
 constexpr bool is_range_of_reviews_v =

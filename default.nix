@@ -1,7 +1,7 @@
 { pkgs ? import (
   builtins.fetchTarball {
-    url = "https://github.com/NixOS/nixpkgs/archive/21.11-pre.tar.gz";
-    sha256 = "0ww19c7n4fj9zn770aw8zaqld742bi9sa9s8hqb3vrgp3mpihil0";
+    url = "https://github.com/NixOS/nixpkgs/archive/refs/tags/24.05-pre.tar.gz";
+    sha256 = "1cfbkahcfj1hgh4v5nfqwivg69zks8d72n11m5513i0phkqwqcgh";
   }
 ) {} }:
 
@@ -9,8 +9,8 @@ let
   additionalInputs = if pkgs.system == "x86_64-linux" then pkgs.lsb-release else "";
 in
 with pkgs; {
-  gcc11Env = stdenvNoCC.mkDerivation {
-    name = "gcc11-environment";
+  gcc13Env = stdenvNoCC.mkDerivation {
+    name = "gcc13-environment";
     buildInputs = [
       autoconf
       automake
@@ -20,7 +20,7 @@ with pkgs; {
       docker
       docker-compose
       doxygen
-      gcc11
+      gcc13
       libtool
       pkg-config
       pre-commit
