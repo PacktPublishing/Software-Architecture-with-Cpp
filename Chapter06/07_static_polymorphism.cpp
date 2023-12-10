@@ -34,7 +34,7 @@ using GlamorousVariant = std::variant<PinkHeels, GoldenWatch>;
 class CommonGlamorousItem {
  public:
   template <typename T>
-  requires std::is_base_of_v<GlamorousItem<T>, T>
+    requires std::is_base_of_v<GlamorousItem<T>, T>
   explicit CommonGlamorousItem(T&& item) : item_{std::forward<T>(item)} {}
 
   void appear_in_full_glory() {

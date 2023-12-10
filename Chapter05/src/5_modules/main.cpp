@@ -80,7 +80,7 @@ void order_items_by_date_added(
 }
 
 template <input_range Container>
-requires std::is_same_v<typename Container::value_type, const Item *>
+  requires std::is_same_v<typename Container::value_type, const Item *>
 void render_item_gallery(const Container &items) {
   auto printable_items =
       items |
