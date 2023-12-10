@@ -19,11 +19,11 @@ before_script:
 prerequisites:
   stage: prerequisites
   script:
-    - pip install conan==1.34.1
+    - pip install conan==1.62.0
     - conan profile new default || true
     - conan profile update settings.compiler=gcc default
     - conan profile update settings.compiler.libcxx=libstdc++11 default
-    - conan profile update settings.compiler.version=10 default
+    - conan profile update settings.compiler.version=13 default
     - conan profile update settings.arch=x86_64 default
     - conan profile update settings.build_type=Release default
     - conan profile update settings.os=Linux default

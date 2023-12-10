@@ -7,7 +7,7 @@ Hands-On Software Architecture with C++ by Packt Publishing
 
 Install the following software:
 - CMake 3.15
-- GCC 10
+- GCC 13
 
 ### Building
 
@@ -20,9 +20,9 @@ cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ```
 
-If GCC 10 is not your default compiler, you can tell CMake to use it with the `CMAKE_CXX_COMPILER` flag.
+If GCC 13 is not your default compiler, you can tell CMake to use it with the `CMAKE_CXX_COMPILER` flag.
 Replace the first invocation above with:
 
 ```bash
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=`which g++-10`
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=`which g++-13`
 ```
