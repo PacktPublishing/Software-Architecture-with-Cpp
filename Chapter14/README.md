@@ -1,5 +1,5 @@
-# Hands-On-Software-Architecture-with-Cpp
-Hands-On Software Architecture with C++ by Packt Publishing
+# Software Architecture with C++
+Software Architecture with C++ by Packt Publishing
 
 ## Chapter 14: Containers
 
@@ -33,7 +33,7 @@ the working directory.
 To build a static binary, you may use:
 
 ```
-conan install .. --build=missing -s build_type=Release -pr=hosacpp
+conan install .. --build=missing -s build_type=Release -pr=sacpp
 cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_EXE_LINKER_FLAGS="-static" -DBUILD_SHARED_LIBS=OFF -DCMAKE_FIND_LIBRARY_SUFFIXES=".a"
 cmake --build .
 ```

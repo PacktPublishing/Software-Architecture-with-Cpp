@@ -115,6 +115,6 @@ add_custom_target(
   COMMAND
     ${CMAKE_COMMAND} -E copy_directory ${PROJECT_SOURCE_DIR}/conan/test_package/
     ${CMAKE_CURRENT_BINARY_DIR}/conan/test_package
-  COMMAND conan create . customer/testing -s build_type=$<CONFIG> -pr hosacpp
+  COMMAND conan create . customer/testing -s build_type=$<CONFIG> -pr sacpp
   WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/conan
   VERBATIM)

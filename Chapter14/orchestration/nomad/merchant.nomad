@@ -6,7 +6,7 @@ job "merchant" {
     task "merchant" {
       driver = "docker"
       config {
-        image = "hosacpp/merchant:v2.0.3"
+        image = "sacpp/merchant:v2.0.3"
         port_map {
           http = 8000
         }
