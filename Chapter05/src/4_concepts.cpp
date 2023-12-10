@@ -29,7 +29,7 @@ struct Item {
   bool featured{};
 };
 
-std::ostream &operator<<(std::ostream &os, const Item* item) {
+std::ostream &operator<<(std::ostream &os, const Item *item) {
   auto stringify_optional = [](const auto &optional) {
     using optional_value_type =
         typename std::remove_cvref_t<decltype(optional)>::value_type;
@@ -134,8 +134,8 @@ void order_items_by_date_added(
 }
 
 template <input_range Container>
-requires std::is_same_v<typename Container::value_type,
-                        gsl::not_null<const Item *>>
+  requires std::is_same_v<typename Container::value_type,
+                          gsl::not_null<const Item *>>
 void render_item_gallery(const Container &items) {
   copy(items,
        std::ostream_iterator<typename Container::value_type>(std::cout, "\n"));

@@ -24,7 +24,8 @@
               "application/json": {
                 "example": {
                   "itemId": 8,
-                  "name", "Kürtőskalács",
+                  "name",
+                  "Kürtőskalács",
                   "locationId": 5
                 }
               }

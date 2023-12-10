@@ -23,7 +23,7 @@
     },
     {
       "type": "shell",
-      "inline":[
+      "inline": [
         "dpkg -i /tmp/{{user `package`}}-{{user `version`}}.deb"
       ]
     }

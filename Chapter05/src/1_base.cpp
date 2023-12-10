@@ -28,7 +28,7 @@ struct Item {
   bool featured{};
 };
 
-std::ostream &operator<<(std::ostream &os, const Item* item) {
+std::ostream &operator<<(std::ostream &os, const Item *item) {
   auto stringify_optional = [](const auto &optional) {
     using optional_value_type =
         typename std::remove_cvref_t<decltype(optional)>::value_type;
