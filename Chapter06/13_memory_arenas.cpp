@@ -1,8 +1,10 @@
 #include <algorithm>
+#include <array>
 #include <iomanip>
 #include <iostream>
 #include <memory_resource>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 void using_memory_arenas() {

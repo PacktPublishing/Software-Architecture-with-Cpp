@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <deque>
+#include <functional>
 #include <gsl/pointers>
 #include <iostream>
 #include <ostream>

@@ -1,4 +1,4 @@
-include(lib/cmake/Catch2/Catch)
+include(Catch)
 
 include(FetchGTest)
 include(GoogleTest)

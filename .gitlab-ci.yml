@@ -5,7 +5,9 @@ cache:
     - build
 
 default:
-  image: conanio/gcc10
+  # GCC 13 on U18 is not available.
+  # All images are listed at https://github.com/conan-io/conan-docker-tools/tree/master/modern#gcc
+  image: conanio/gcc13-ubuntu16.04
 
 stages:
   - prerequisites
@@ -19,24 +21,23 @@ before_script:
 prerequisites:
   stage: prerequisites
   script:
-    - pip install conan==1.34.1
+    - pip install -U 'conan<2' 'cmake>=3.27.9'
     - conan profile new default || true
     - conan profile update settings.compiler=gcc default
     - conan profile update settings.compiler.libcxx=libstdc++11 default
-    - conan profile update settings.compiler.version=10 default
+    - conan profile update settings.compiler.version=13 default
     - conan profile update settings.arch=x86_64 default
     - conan profile update settings.build_type=Release default
-    - conan profile update settings.os=Linux default
-    - conan remote add trompeloeil https://api.bintray.com/conan/trompeloeil/trompeloeil || true
+    - conan profile update settings.os=Linux default || true
 
 build:
   stage: build
   script:
-    - sudo apt-get update && sudo apt-get install -y docker.io
+    - sudo apt-get update && sudo apt-get install -y docker.io ninja-build
     - mkdir -p build
     - cd build
-    - conan install ../ch08/customer --build=missing
-    - cmake -DBUILD_TESTING=1 -DCMAKE_BUILD_TYPE=Release ../ch08/customer
+    - conan install ../Chapter08/customer --build=missing
+    - cmake -GNinja -DBUILD_TESTING=1 -DCMAKE_BUILD_TYPE=Release ../Chapter08/customer
     - cmake --build .
 
 test:

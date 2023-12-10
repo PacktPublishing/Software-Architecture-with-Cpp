@@ -6,6 +6,7 @@
 #include <optional>
 #include <ostream>
 #include <ranges>
+#include <unordered_map>
 #include <vector>
 
 using namespace std::chrono;
