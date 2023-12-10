@@ -87,8 +87,8 @@ You need at least one of the following compilers:
 | No. | Software required | OS required |
 | --- | ----------------- | ----------- |
 |  1  | Microsoft Visual C++ 16.8 | Windows |
-|  2  | Clang 8 / Apple Clang 10 | Windows, Mac OS X, and Linux (Any) |
-|  3  | GCC 11 | Windows, Mac OS X, and Linux (Any) |
+|  2  | Clang 16 | Windows, Mac OS X, and Linux (Any) |
+|  3  | GCC 13 | Windows, Mac OS X, and Linux (Any) |
 
 We also provide a PDF file that has color images of the screenshots/diagrams used in this book. [Click here to download it](https://static.packt-cdn.com/downloads/9781838554590_ColorImages.pdf).
 

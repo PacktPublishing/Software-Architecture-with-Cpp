@@ -6,14 +6,10 @@ Hands-On Software Architecture with C++ by Packt Publishing
 ### Prerequisites
 
 Install the following software:
-- CMake 3.15
-- GCC 11
-
-Install the following software:
 
 - CMake 3.15
-- Conan 1.34.1
-- GCC 11
+- Conan 1.62.0
+- GCC 13
 
 Assuming you're on Linux or using WSL, configure a hosacpp Conan profile and remotes by running:
 
@@ -26,11 +22,11 @@ conan profile update settings.arch=x86_64 hosacpp
 conan profile update settings.os=Linux hosacpp
 ```
 
-If GCC 11 is not your default compiler, you also need to add:
+If GCC 13 is not your default compiler, you also need to add:
 
 ```bash
-conan profile update env.CXX=`which g++-11` hosacpp
-conan profile update env.CC=`which gcc-11` hosacpp
+conan profile update env.CXX=`which g++-13` hosacpp
+conan profile update env.CC=`which gcc-13` hosacpp
 ```
 
 ### Building
@@ -49,5 +45,5 @@ If GCC is not your default compiler, you can tell CMake to use it with the `CMAK
 Replace the first invocation above with:
 
 ```bash
-cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=`which g++-11`
+cmake .. -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_COMPILER=`which g++-13`
 ```
